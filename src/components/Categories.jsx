@@ -7,17 +7,13 @@ const Categories = () => {
 	const [categories, SetCategories] = useState([])
 
 	useEffect(() => {
-		fetch("./assets/data.xlsx")
-			.then((res) => res.arrayBuffer())
-			.then((ab) => {
-				const wb = XLSX.read(ab, { type: "array" });
 
-				const categoriesXLSX = wb.SheetNames.map(name => {
-					return { name, products: XLSX.utils.sheet_to_json(wb.Sheets[name]) }
-				})
+		// Sort results by id in descending order, take two
+		// and return the age as an integer.
 
-				SetCategories(categoriesXLSX)
-			});
+		fetch('https://sheetdb.io/api/v1/tew8gu5w39788?sheets')
+			.then((response) => response.json())
+			.then((data) => console.log(data));
 	}, [])
 
 	return (
