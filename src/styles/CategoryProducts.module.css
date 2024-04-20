@@ -1,0 +1,19 @@
+.category {
+	padding: 0 40px;
+	padding-top: 80px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.products {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.title {
+	color: black;
+	font-size: 36px;
+	text-transform: uppercase;
+}
