@@ -1,43 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.72b75ccc.css",
-    "main.js": "/static/js/main.2ad8ad34.js",
-    "static/media/IMG_3319.webp": "/static/media/IMG_3319.2fcfcc75b866cf83fcb6.webp",
-    "static/media/Tea.webp": "/static/media/Tea.3087980885b0307f567d.webp",
-    "static/media/IMG_3322.webp": "/static/media/IMG_3322.712de14e38d88177c045.webp",
-    "static/media/Drip decaf.webp": "/static/media/Drip decaf.fea81b696b7ae09aa69f.webp",
-    "static/media/americano.webp": "/static/media/americano.9a03275de3e133a6c0cd.webp",
-    "static/media/cocoa.webp": "/static/media/cocoa.b13306541e6f29843621.webp",
-    "static/media/latte_1.webp": "/static/media/latte_1.652ad1bfd57d4b300774.webp",
-    "static/media/Flat white_2.webp": "/static/media/Flat white_2.7d6fba7ec616c4d08401.webp",
-    "static/media/latte_2.webp": "/static/media/latte_2.413c4b07122a462084d2.webp",
-    "static/media/cappuccino_1.webp": "/static/media/cappuccino_1.6beb7ec26b44b3a950e5.webp",
-    "static/media/cappuccino_2.webp": "/static/media/cappuccino_2.ba1e49f233e481e40243.webp",
-    "static/media/Flat white_1.webp": "/static/media/Flat white_1.1fe1c537acfc4163773f.webp",
-    "static/media/IMG_3336.webp": "/static/media/IMG_3336.51163063710dc1fb0325.webp",
-    "static/media/IMG_3324.webp": "/static/media/IMG_3324.a3ac63a03baa7d505249.webp",
-    "static/media/IMG_3325.webp": "/static/media/IMG_3325.affdfd018267a81f7262.webp",
-    "static/media/Raf.webp": "/static/media/Raf.d2098f381d8ac1c1f65b.webp",
-    "static/media/Caramel ice latte.webp": "/static/media/Caramel ice latte.cb82906448ef3440cc11.webp",
-    "static/media/IMG_3323.webp": "/static/media/IMG_3323.2f1896363f31c18fb577.webp",
-    "static/media/Glasse.webp": "/static/media/Glasse.1487ae8dcc36680be419.webp",
-    "static/media/Cold brew creamy.webp": "/static/media/Cold brew creamy.c936116dd09d639601a6.webp",
-    "static/media/IMG_3334.webp": "/static/media/IMG_3334.39fd6132143cb6121004.webp",
-    "static/media/Matcha-ice matcha.webp": "/static/media/Matcha-ice matcha.d2ec437c70a3b0e04d36.webp",
-    "static/media/Espresso tonic grapefruit.webp": "/static/media/Espresso tonic grapefruit.3c56d8ab06d367145514.webp",
-    "static/media/Almond ice raf.webp": "/static/media/Almond ice raf.fe94c63edafcd3fd3046.webp",
-    "static/media/IMG_3340.webp": "/static/media/IMG_3340.3413e3617be3681e870f.webp",
-    "static/media/IMG_3344.webp": "/static/media/IMG_3344.03636c80be408ca9045a.webp",
-    "static/media/IMG_3332.webp": "/static/media/IMG_3332.d2c61a210555843049c8.webp",
-    "static/media/IMG_3337.webp": "/static/media/IMG_3337.6a601a4f2d8f4c037610.webp",
-    "static/media/IMG_3341.webp": "/static/media/IMG_3341.ac67bbc68f5a28637eb8.webp",
-    "static/media/Espresso.webp": "/static/media/Espresso.adb263e265e0f2336642.webp",
+    "main.css": "/static/css/main.77ab7e08.css",
+    "main.js": "/static/js/main.4d40b042.js",
+    "static/media/Unbounded-SemiBold.ttf": "/static/media/Unbounded-SemiBold.cb16a9e03403a3a0a1a6.ttf",
+    "static/media/Unbounded-Regular.ttf": "/static/media/Unbounded-Regular.29479ac97777a463b92f.ttf",
+    "static/media/NunitoSans_10pt-Regular.ttf": "/static/media/NunitoSans_10pt-Regular.7a5b1e324beb1081259a.ttf",
+    "static/media/NunitoSans_10pt-Light.ttf": "/static/media/NunitoSans_10pt-Light.d120ae23d1fe91716bf9.ttf",
     "index.html": "/index.html",
-    "main.72b75ccc.css.map": "/static/css/main.72b75ccc.css.map",
-    "main.2ad8ad34.js.map": "/static/js/main.2ad8ad34.js.map"
+    "main.77ab7e08.css.map": "/static/css/main.77ab7e08.css.map",
+    "main.4d40b042.js.map": "/static/js/main.4d40b042.js.map"
   },
   "entrypoints": [
-    "static/css/main.72b75ccc.css",
-    "static/js/main.2ad8ad34.js"
+    "static/css/main.77ab7e08.css",
+    "static/js/main.4d40b042.js"
   ]
 }
