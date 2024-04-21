@@ -8,3 +8,31 @@
   font-style: normal;
   transition: all 0.4s ease-in-out;
 }
+
+:root {
+  --unbounded-regular: "Unbounded", sans-serif;
+  --unbounded-semibold: "Unbounded", sans-serif;
+  --nunito-sans-regular: "Nunito sans 10pt", sans-serif;
+  --nunito-sans-light: "Nunito sans 10pt", sans-serif;
+}
+
+@font-face {
+  font-family: var(--unbounded-regular);
+  src: url(./assets/fonts/Unbounded/static/Unbounded-Regular.ttf);
+}
+
+@font-face {
+  font-family: var(--unbounded-semibold);
+  src: url(./assets/fonts/Unbounded/static/Unbounded-SemiBold.ttf);
+
+}
+
+@font-face {
+  font-family: var(--nunito-sans-regular);
+  src: url(./assets/fonts/Nunito_Sans/static/NunitoSans_10pt-Regular.ttf);
+}
+
+@font-face {
+  font-family: var(--nunito-sans-light);
+  src: url(./assets/fonts/Nunito_Sans/static/NunitoSans_10pt-Light.ttf);
+}

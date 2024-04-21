@@ -1,21 +1,27 @@
 import React, { useEffect } from 'react'
 import cl from '../styles/Product.module.css'
-import { CAPACITY_EN_ML, CAPACITY_GE_ML, CURRENCY_GE } from '../helpers/const'
+import { CAPACITY_EN_ML, CAPACITY_GE_ML, CURRENCY_GE, LANGUAGE } from '../helpers/const'
 
 const Product = ({ product }) => {
-	const IMG = require(`./../assets/webp/${product.img.slice(5)}`)
+
+	useEffect(() => {
+
+		console.log(product.img)
+		console.log()
+	}, [])
+
 	return (
-		<div className={cl.product}>
-			<img src={IMG} alt={product.title_en} />
-			<div className={cl.wrapper}>
-				<div className={cl.price}>{product.price + ' ' + CURRENCY_GE}</div>
-				<div className={cl.link}>+</div>
-				<div className={cl.title}>
-					<span>{product.title_en} ({product.capacity + ' ' + CAPACITY_EN_ML})</span><br />
-					<span>{product.title_ge} ({product.capacity + ' ' + CAPACITY_GE_ML})</span>
-				</div>
-			</div>
-		</div>
+		<>
+			{product.img ?
+				<div className={cl.product}>
+
+					<img src={'https://lh3.google.com/u/0/d/' + product.img.slice(32, product.img.indexOf('/view'))} alt={product.title_en} />
+					<div className={cl.wrapper}>
+
+					</div>
+				</div> : null}
+		</>
+
 	)
 }
 

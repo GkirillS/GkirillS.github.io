@@ -35,37 +35,3 @@
 	border: none;
 
 }
-
-
-.link,
-.title,
-.price {
-	padding: 20px 20px;
-	color: white;
-	background-color: rgba(0, 0, 0, 0.2);
-	border-radius: 15px;
-	backdrop-filter: blur(10px);
-	font-size: 18px;
-}
-
-.price {
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	padding: 12px 20px;
-
-}
-
-.link {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	padding: 12px 20px;
-}
-
-.title {
-	position: absolute;
-	bottom: 10px;
-	left: 10px;
-	width: calc(280px - 20px)
-}
