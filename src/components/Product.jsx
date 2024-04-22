@@ -3,25 +3,15 @@ import cl from '../styles/Product.module.css'
 import { CAPACITY_EN_ML, CAPACITY_GE_ML, CURRENCY_GE, LANGUAGE } from '../helpers/const'
 
 const Product = ({ product }) => {
-
-	useEffect(() => {
-
-		console.log(product.img)
-		console.log()
-	}, [])
+	const IMG = require('./assets/image/' + product.img + '.jpg');
 
 	return (
-		<>
-			{product.img ?
-				<div className={cl.product}>
+		<div className={cl.product}>
+			<img src={IMG} alt={product.title_en} />
+			<div className={cl.wrapper}>
 
-					<img src={'https://lh3.google.com/u/0/d/' + product.img.slice(32, product.img.indexOf('/view'))} alt={product.title_en} />
-					<div className={cl.wrapper}>
-
-					</div>
-				</div> : null}
-		</>
-
+			</div>
+		</div>
 	)
 }
 
