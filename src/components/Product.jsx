@@ -1,15 +1,29 @@
 import React, { useEffect } from 'react'
 import cl from '../styles/Product.module.css'
-import { CAPACITY_EN_ML, CAPACITY_GE_ML, CURRENCY_GE, LANGUAGE } from '../helpers/const'
+import { LANGUAGE } from '../helpers/const'
 
 const Product = ({ product }) => {
-	const IMG = require('./assets/image/' + product.img + '.jpg');
 
 	return (
 		<div className={cl.product}>
-			<img src={IMG} alt={product.title_en} />
+			<img src={'./assets/image/' + product.img + '.jpg'} alt={product.title_en} />
 			<div className={cl.wrapper}>
-
+				<div className={cl.description}>
+					<div className={cl.title}>
+						<div className={cl.price}>{product.price}</div>
+						<div className={cl.currency}>
+							<span>g</span>
+							<span>e</span>
+							<span>l</span>
+						</div>
+					</div>
+					<div className={cl.subtitle}>
+						{product['title_' + LANGUAGE]}
+					</div>
+				</div>
+				<div className={cl.watermark}>
+					sage.com
+				</div>
 			</div>
 		</div>
 	)

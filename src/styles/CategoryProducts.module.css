@@ -13,7 +13,8 @@
 }
 
 .title {
-	color: black;
-	font-size: 36px;
+	color: var(--dark-brown);
+	font-family: var(--unbounded-semibold);
+	font-size: 40px;
 	text-transform: uppercase;
 }

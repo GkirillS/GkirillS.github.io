@@ -1,6 +1,9 @@
 .menu {
 	display: flex;
 	flex-direction: column;
+	background-color: var(--beige);
 }
 
-.categories {}
+.categories {
+	padding-bottom: 80px;
+}

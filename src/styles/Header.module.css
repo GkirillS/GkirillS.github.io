@@ -5,7 +5,7 @@
 	height: 100%;
 	display: flex;
 	border-bottom: 2px solid #8080804a;
-	background-color: white;
+	background-color: var(--beige);
 	z-index: 100;
 }
 
@@ -24,6 +24,7 @@
 	font-weight: 600;
 	letter-spacing: -0.5px;
 	cursor: pointer;
+	font-family: var(--unbounded-semibold);
 }
 
 .logo {

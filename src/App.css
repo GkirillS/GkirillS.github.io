@@ -1,19 +1,12 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  outline: none;
-  font-family: "Comfortaa", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  transition: all 0.4s ease-in-out;
-}
-
 :root {
   --unbounded-regular: "Unbounded", sans-serif;
   --unbounded-semibold: "Unbounded", sans-serif;
   --nunito-sans-regular: "Nunito sans 10pt", sans-serif;
   --nunito-sans-light: "Nunito sans 10pt", sans-serif;
+  --beige: #fff7ec;
+  --brown: #ad8b6b;
+  --green: #3e6052;
+  --dark-brown: #47241c;
 }
 
 @font-face {
@@ -35,4 +28,18 @@
 @font-face {
   font-family: var(--nunito-sans-light);
   src: url(./assets/fonts/Nunito_Sans/static/NunitoSans_10pt-Light.ttf);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-optical-sizing: auto;
+  font-style: normal;
+  text-decoration: none;
+  color: #47241c;
+	font-family: var(--nunito-sans-light);
+  transition: all 0.4s ease-in-out;
+  scroll-behavior: smooth;
 }

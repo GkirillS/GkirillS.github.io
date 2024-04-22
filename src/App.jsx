@@ -5,12 +5,11 @@ import Header from './components/Header';
 import Banner from './components/Banner';
 import Product from './components/Product';
 import Categories from './components/Categories';
-import * as XLSX from 'xlsx';
 
 
 const App = () => {
   return (
-    <div style={{ height: '1000px' }}>
+    <div>
       <Header />
       <main>
         <Banner />

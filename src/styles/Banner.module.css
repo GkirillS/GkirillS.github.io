@@ -1,5 +1,5 @@
 .banner {
-	background-color: #d1cc52;
+	background-color: var(--brown);
 	position: relative;
 }
 
@@ -17,25 +17,25 @@
 
 .path {
 	font-size: 14px;
-	color: #9d9938;
+	color: var(--dark-brown);
 }
 
 .title {
 	font-size: 46px;
 	line-height: 60px;
-	color: white;
+	color: var(--dark-brown);
 	text-transform: uppercase;
-	font-weight: 800;
+	font-family: var(--unbounded-semibold);
 
 }
 
 .subtittle {
 	font-size: 16px;
-	color: white;
+	color: var(--dark-brown);
 }
 
 .button {
-	color: black;
+	color: var(--dark-brown);
 	border-radius: 15px;
 	font-size: 13px;
 	font-weight: 600;
