@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.77ab7e08.css",
-    "main.js": "/static/js/main.4d40b042.js",
+    "main.css": "/static/css/main.552c12e0.css",
+    "main.js": "/static/js/main.a8d97540.js",
     "static/media/Unbounded-SemiBold.ttf": "/static/media/Unbounded-SemiBold.cb16a9e03403a3a0a1a6.ttf",
     "static/media/Unbounded-Regular.ttf": "/static/media/Unbounded-Regular.29479ac97777a463b92f.ttf",
     "static/media/NunitoSans_10pt-Regular.ttf": "/static/media/NunitoSans_10pt-Regular.7a5b1e324beb1081259a.ttf",
     "static/media/NunitoSans_10pt-Light.ttf": "/static/media/NunitoSans_10pt-Light.d120ae23d1fe91716bf9.ttf",
     "index.html": "/index.html",
-    "main.77ab7e08.css.map": "/static/css/main.77ab7e08.css.map",
-    "main.4d40b042.js.map": "/static/js/main.4d40b042.js.map"
+    "main.552c12e0.css.map": "/static/css/main.552c12e0.css.map",
+    "main.a8d97540.js.map": "/static/js/main.a8d97540.js.map"
   },
   "entrypoints": [
-    "static/css/main.77ab7e08.css",
-    "static/js/main.4d40b042.js"
+    "static/css/main.552c12e0.css",
+    "static/js/main.a8d97540.js"
   ]
 }
