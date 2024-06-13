@@ -1,0 +1,20 @@
+.department {
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	background-color: grey;
+}
+
+.departmentCategoris {
+	max-height: 0px;
+	overflow: hidden;
+}
+
+.departmentCategorisOpened {
+	max-height: 9999px;
+}

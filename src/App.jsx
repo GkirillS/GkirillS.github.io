@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Banner from './components/Banner';
-import Product from './components/Product';
-import Categories from './components/Categories';
+import Menu from './components/Menu';
 
 
 const App = () => {
@@ -12,8 +10,7 @@ const App = () => {
     <div>
       <Header />
       <main>
-        <Banner />
-        <Categories />
+        <Menu />
       </main>
       <Footer />
     </div>

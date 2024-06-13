@@ -1,0 +1,30 @@
+.category {
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	background-color: grey;
+}
+
+.title {}
+
+.icon {}
+
+.container {
+	max-height: 0px;
+	overflow: hidden;
+	transition: all 0.8s linear;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 280px);
+	grid-template-rows: 1fr;
+	justify-content: center;
+	gap: 20px 30px;
+}
+
+.containerOpen {
+	max-height: 1000px;
+}

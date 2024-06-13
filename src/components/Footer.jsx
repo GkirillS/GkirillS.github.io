@@ -4,14 +4,14 @@ import cl from '../styles/Footer.module.css'
 const Footer = () => {
 	const handlerOnTop = () => {
 		document.body.scrollTop = 0;
-  		document.documentElement.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
 	}
-	
+
 	return (
 		<div className={cl.footer}>
 			<div className={cl.top}>
 				<div className={cl.logo}>
-					<img src="./assets/logo.png" alt="logo" />
+					<img src="./logo.svg" alt="logo" />
 				</div>
 				<div className={cl.privacy}>
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate adipisci temporibus eligendi doloremque labore totam reiciendis laudantium, dolore id, aliquam possimus, excepturi vitae quo. Labore, sunt! Earum rerum natus voluptatibus.
@@ -31,7 +31,6 @@ const Footer = () => {
 				</div>
 				<div className={cl.bottom_btn}>
 					<button onClick={handlerOnTop}>
-						<i class="fa-solid fa-arrow-up fa-lg"></i>
 					</button>
 				</div>
 			</div>

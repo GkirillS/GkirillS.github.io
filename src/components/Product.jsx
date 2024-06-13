@@ -3,6 +3,9 @@ import cl from '../styles/Product.module.css'
 import { LANGUAGE } from '../helpers/const'
 
 const Product = ({ product }) => {
+	useEffect(() => {
+		console.log(product)
+	}, [])
 
 	return (
 		<div className={cl.product}>
@@ -20,9 +23,6 @@ const Product = ({ product }) => {
 					<div className={cl.subtitle}>
 						{product['title_' + LANGUAGE]}
 					</div>
-				</div>
-				<div className={cl.watermark}>
-					sage.com
 				</div>
 			</div>
 		</div>
