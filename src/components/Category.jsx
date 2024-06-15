@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Product from './Product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import cl from '../styles/Category.module.css'
@@ -8,6 +8,11 @@ const Category = ({ category, products }) => {
 
 	const [openCategory, setOpenCategory] = useState(false)
 
+	useEffect(() => {
+		console.log(category.name_en.toLowerCase())
+		console.log(products)
+		console.log(products[category.name_en.toLowerCase()])
+	}, [])
 	return (
 		<div className={cl.category}>
 			<div
@@ -26,7 +31,7 @@ const Category = ({ category, products }) => {
 				className={[cl.container, openCategory && cl.containerOpen].join(' ')}
 			>
 				{
-					products[category.name_en]?.map(product =>
+					products[category.name_en.toLowerCase()]?.map(product =>
 						<Product
 							key={product.title_en}
 							product={product}
