@@ -1,30 +1,47 @@
 .category {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 
 .header {
 	display: flex;
 	justify-content: space-between;
-	padding: 20px;
-	background-color: grey;
+	padding: 20px 50px;
+	background-color: var(--beige);
+	position: sticky;
+	top: 103px;
+	height: fit-content;
+	z-index: 10;
+	border-bottom: 3px solid var(--green);
+	margin-top: -98px;
 }
 
-.title {}
+.title {
+	font-family: var(--unbounded);
+	font-size: 44px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.title a {
+	color: var(--dark-brown)
+}
 
 .icon {}
 
 .container {
-	max-height: 0px;
 	overflow: hidden;
 	transition: all 0.5s linear;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 280px);
-	grid-template-rows: 1fr;
+	grid-template-columns: repeat(auto-fill, 380px);
+	grid-template-rows:  repeat(auto-fill, 456px);
 	justify-content: center;
-	gap: 20px 30px;
+	gap: 120px 80px;
+	padding: 50px 50px 145px;
 }
 
-.containerOpen {
-	max-height: 3000px;
+.anchor {
+	position: absolute;
+	top: -103px;
 }

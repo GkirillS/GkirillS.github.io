@@ -1,20 +1,52 @@
 .department {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 
 .header {
-	display: flex;
-	justify-content: space-between;
-	padding: 20px;
-	background-color: grey;
+	position: sticky;
+	top: 103px;
+	z-index: 11;
+	width: 40%;
+	align-self: self-end;
 }
 
-.departmentCategoris {
-	max-height: 0px;
+.title {
+	padding: 20px 50px;
+	font-family: var(--unbounded);
+	font-weight: 600;
+	font-size: 44px;
+	text-align: right;
+	height: 100%;
+	background-color: var(--beige);
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	gap: 20px;
 	overflow: hidden;
 }
 
-.departmentCategorisOpened {
-	max-height: 9999px;
+.title a {
+	color: var(--dark-brown)
+}
+
+.icon {
+	cursor: pointer;
+	background-color: var(--beige);
+	z-index: 2;
+}
+
+.icon svg {
+	position: relative;
+	bottom: -15px;
+}
+
+.revert {
+	transform: translateX(500px);
+}
+
+.anchor {
+	position: absolute;
+	top: -103px;
 }

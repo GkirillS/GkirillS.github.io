@@ -1,30 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import cl from '../styles/Department.module.css'
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Category from './Category'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTurnDown } from '@fortawesome/free-solid-svg-icons'
 
-const Department = ({ name, categories, products }) => {
-	const [openDepartment, setOpenDepartment] = useState(false)
+const Department = ({ nameRevert, name, categories, products, language }) => {
+
+	const revert = async () => {
+		document.querySelector(`[attr-link="${nameRevert}"]`).click()
+	};
 
 	return (
 		<div className={cl.department}>
-			<div className={cl.header} onClick={() => setOpenDepartment(!openDepartment)}>
-				<div className={cl.title}>{name}</div>
-				<div className={cl.icon}>
-					<FontAwesomeIcon
-						icon={faChevronUp}
-						style={openDepartment ? { transform: 'scaleY(-1)' } : null}
-					/>
+			<a
+				name={name}
+				className={cl.anchor}
+			></a>
+			<div className={cl.header}>
+				<div className={cl.title}>
+					{/* <span className={cl.revert}>
+						{nameRevert}
+					</span> */}
+					<a attr-link={name} href={'#' + name}>
+						{name}
+					</a>
+					<div
+						onClick={revert}
+						className={cl.icon}
+					>
+						<FontAwesomeIcon
+							size='xs'
+							icon={faTurnDown}
+						/>
+					</div>
 				</div>
 			</div>
-			<div className={[cl.departmentCategoris, openDepartment && cl.departmentCategorisOpened].join(' ')}>
+			<div className={[cl.departmentCategoris].join(' ')}>
 				{
 					categories.map(category =>
 						<Category
 							key={category.name_en}
 							category={category}
 							products={products}
+							language={language}
 						/>
 					)
 				}

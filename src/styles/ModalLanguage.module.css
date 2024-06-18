@@ -1,0 +1,44 @@
+.wrapper {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    background-color: var(--beige);
+    border: 3px solid var(--dark-brown);
+    padding: 20px;
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.language {
+    padding: 5px 8px;
+    border-radius: 15px;
+    border: 3px solid var(--dark-brown);
+    font-family: var(--unbounded);
+    font-weight: 600;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.language:hover {
+    background-color: var(--green);
+}
+
+.active {
+    background-color: var(--green);
+}

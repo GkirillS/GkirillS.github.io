@@ -1,38 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import Product from './Product'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import cl from '../styles/Category.module.css'
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
-const Category = ({ category, products }) => {
+const Category = ({ category, products, language }) => {
 
-	const [openCategory, setOpenCategory] = useState(false)
-
-	useEffect(() => {
-		console.log(category.name_en.toLowerCase())
-		console.log(products)
-		console.log(products[category.name_en.toLowerCase()])
-	}, [])
 	return (
 		<div className={cl.category}>
+			<a
+				className={cl.anchor}
+				name={category.name_en}
+			></a>
 			<div
 				className={cl.header}
-				onClick={() => setOpenCategory(!openCategory)}
 			>
-				<div className={cl.title}>{category.name_en}</div>
-				<div className={cl.icon}>
-					<FontAwesomeIcon
-						icon={faChevronUp}
-						style={openCategory ? { transform: 'scaleY(-1)' } : null}
-					/>
+				<div className={cl.title}>
+					<a href={'#' + category.name_en}>
+					{category.name_en}
+					</a>
 				</div>
 			</div>
 			<div
-				className={[cl.container, openCategory && cl.containerOpen].join(' ')}
+				className={[cl.container].join(' ')}
 			>
 				{
 					products[category.name_en.toLowerCase()]?.map(product =>
 						<Product
+							language={language}
 							key={product.title_en}
 							product={product}
 						/>

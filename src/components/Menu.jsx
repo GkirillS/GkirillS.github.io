@@ -6,7 +6,7 @@ import Skeleton from './Skeleton'
 import { API_BAR, API_KITCHEN } from '../helpers/const'
 import Department from './Department'
 
-const Categories = () => {
+const Categories = ({language}) => {
 	const [bar, setBar] = useState({})
 	const [kitchen, setKitchen] = useState({})
 	const [catalogBar, SetCatalogBar] = useState([])
@@ -69,8 +69,20 @@ const Categories = () => {
 
 	return (
 		<section className={cl.menu}>
-			<Department name={'Kitchen'} categories={catalogKitchen} products={kitchen} />
-			<Department name={'Bar'} categories={catalogBar} products={bar} />
+			<Department
+				nameRevert={'Bar'}
+				name={'Kitchen'}
+				categories={catalogKitchen}
+				language={language}
+				products={kitchen}
+			/>
+			<Department
+				nameRevert={'Kitchen'}
+				name={'Bar'}
+				categories={catalogBar}
+				products={bar}
+				language={language}
+			/>
 		</section>
 	)
 }
