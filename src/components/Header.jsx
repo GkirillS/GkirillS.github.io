@@ -7,7 +7,7 @@ const Header = () => {
 			<div className={cl.wrapper}>
 				<div className={cl.logo}>
 					<a className={cl.logo__img} href='/'>
-						<img src="./assets/logo-word.PNG" alt="logo" />
+						<img src="./assets/image/logo/word-black.PNG" alt="logo" />
 					</a>
 				</div>
 			</div>

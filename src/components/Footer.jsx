@@ -10,7 +10,7 @@ const Footer = () => {
 			<div className={cl.left}>
 				<div className={cl.body_left}>
 					<div className={cl.logo}>
-						<img src="./logo.svg" alt="" />
+						<img src="./assets/image/logo/white.svg" alt="" />
 					</div>
 					<ul className={cl.links}>
 						<li className={cl.link}>

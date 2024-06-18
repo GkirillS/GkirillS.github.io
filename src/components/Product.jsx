@@ -9,11 +9,11 @@ const Product = ({ product, language }) => {
 
 	const IMG = useMemo(() => {
 		try {
-			const img = require('../assets/image/' + product.img + '.jpg')
+			const img = require('../assets/image/products/' + product.img + '.jpg')
 			setIsDefault(false)
 			return img
 		} catch (error) {
-			const defaultIMG = require('../assets/image/default.jpg')
+			const defaultIMG = require('../assets/image/products/default.jpg')
 			setIsDefault(true)
 			return defaultIMG;
 		}
