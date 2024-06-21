@@ -27,6 +27,8 @@
 .logo {
 	height: 100%;
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 }
 
@@ -34,12 +36,27 @@
 	height: 100%;
 	justify-content: center;
 	display: flex;
-	width: 100%;
+	width: fit-content;
 	padding: 10px 0;
+	display: flex;
+	flex-direction: column;
+	height: 80px;
+	align-items: center;
+	justify-content: center;
 }
 
-.logo__img img {
-	height: 80px;
+.logo__img span:first-child {
+	font-family: var(--unbounded);
+	font-weight: 600;
+	font-size: 40px;
+	color: var(--dark-brown);
+}
+
+.logo__img span:last-child {
+	font-family: var(--unbounded);
+	font-weight: 400;
+	font-size: 18px;
+	color: var(--dark-brown);
 }
 
 .menu {

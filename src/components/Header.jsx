@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import cl from '../styles/Header.module.css'
+import { Corn } from '../helpers/icons'
 
 const Header = () => {
 	const IMG = useMemo(() => {
@@ -36,10 +37,12 @@ const Header = () => {
 				<div className={cl.wrapper}>
 					<div className={cl.logo}>
 						<a className={cl.logo__img} href='/'>
-							<img src="./assets/image/logo/word-black.PNG" alt="logo" />
+							<span>SAGE</span>
+							<span>coffee</span>
 						</a>
 					</div>
 				</div>
+				<Corn />
 			</header>
 		</>
 	)
