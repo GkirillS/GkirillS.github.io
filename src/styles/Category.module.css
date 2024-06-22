@@ -28,14 +28,14 @@
 	color: var(--dark-brown)
 }
 
-.icon {}
+.icon svg {}
 
 .container {
 	overflow: hidden;
 	transition: all 0.5s linear;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 380px);
-	grid-template-rows:  repeat(auto-fill, 456px);
+	grid-template-rows: repeat(auto-fill, 456px);
 	justify-content: center;
 	gap: 120px 80px;
 	padding: 50px 50px 145px;
@@ -44,4 +44,52 @@
 .anchor {
 	position: absolute;
 	top: -103px;
+}
+
+@media screen and (max-width: 767px) {
+	.header {
+		padding: 15px 30px;
+		gap: 8px;
+		margin-top: -70px;
+	}
+
+	.title {
+		font-size: 30px;
+	}
+
+	.icon svg {
+		font-size: 20px;
+		bottom: -10px;
+	}
+
+	.container {
+		grid-template-columns: repeat(auto-fill, 300px);
+		grid-template-rows: repeat(auto-fill, 380px);
+		gap: 80px 60px;
+		padding: 50px 20px 145px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.header {
+		padding: 15px 10px;
+		gap: 8px;
+		margin-top: -57px;
+	}
+
+	.title {
+		font-size: 20px;
+	}
+
+	.icon svg {
+		font-size: 20px;
+		bottom: -10px;
+	}
+
+	.container {
+		grid-template-columns: repeat(auto-fill, 300px);
+		grid-template-rows: repeat(auto-fill, 380px);
+		gap: 40px 60px;
+		padding: 50px 20px;
+	}
 }

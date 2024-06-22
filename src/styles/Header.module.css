@@ -50,6 +50,13 @@
 	font-weight: 600;
 	font-size: 40px;
 	color: var(--dark-brown);
+	border-radius: 20%;
+}
+
+.logo__img span {
+	display: block;
+	z-index: 1;
+	background: var(--beige);
 }
 
 .logo__img span:last-child {
@@ -57,6 +64,9 @@
 	font-weight: 400;
 	font-size: 18px;
 	color: var(--dark-brown);
+	border-bottom-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	padding: 5px;
 }
 
 .menu {

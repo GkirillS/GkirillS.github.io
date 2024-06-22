@@ -23,6 +23,13 @@ const Product = ({ product, language }) => {
 	// 	console.log(product)
 	// }, [])
 	//
+
+	function setVendor(element, property, value) {
+		element.style["webkit" + property] = value;
+		element.style["moz" + property] = value;
+		element.style["ms" + property] = value;
+		element.style["o" + property] = value;
+	}
 	const title = useMemo(() => {
 		if (!product.capacity) return product[`title_` + language]
 		const capacity = '(' + product.capacity + ' ' + CAPACITY_EN_ML + ')'
@@ -32,18 +39,40 @@ const Product = ({ product, language }) => {
 	const [isBeat, setIsBeat] = useState(false);
 	const [isOpenProduct, setIsOpenProduct] = useState(false);
 
+	const handlerOpenCloseIcon = (e) => {
+		e.stopPropagation()
+		setIsOpenProduct(!isOpenProduct)
+	}
+
+	const handlerClickOpenProductMobile = (e) => {
+		if (document.body.getBoundingClientRect().width <= 480) {
+			handlerOpenCloseIcon(e)
+		}
+	}
+
 	return (
-		<div className={cl.product}>
+		<div
+			className={cl.product}
+			onClick={(e) => handlerClickOpenProductMobile(e)}
+		>
 			<div
 				className={[cl.wrapper, cl.front].join(' ')}
 				style={
 					isOpenProduct ? {
-						transform: 'perspective(600px) rotateY(-180deg) translate(50%, -50%)',
+						transform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
+						WebkitTransform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
+						MozTransform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
+						msTransform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
+						OTransform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
 						zIndex: '1'
 					} : {
-						transform: 'perspective(600px) rotateY(0) translate(-50%, -50%)',
+						transform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
+						WebkitTransform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
+						MozTransform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
+						msTransform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
+						OTransform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
 						zIndex: '2'
-					} 
+					}
 				}
 			>
 				<img
@@ -61,7 +90,7 @@ const Product = ({ product, language }) => {
 					className={[cl.arrow, cl.container].join(' ')}
 					onMouseOver={() => setIsBeat(true)}
 					onMouseOut={() => setIsBeat(false)}
-					onClick={() => setIsOpenProduct(!isOpenProduct)}
+					onClick={(e) => handlerOpenCloseIcon(e)}
 				>
 					{isOpenProduct ?
 						<FontAwesomeIcon beat={isBeat} icon={faDownLeftAndUpRightToCenter} />
@@ -77,20 +106,28 @@ const Product = ({ product, language }) => {
 				className={[cl.wrapper, cl.back].join(' ')}
 				style={
 					isOpenProduct ? {
-						transform: 'perspective(600px) rotateY(0) translate(-50%, -50%)',
+						transform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
+						WebkitTransform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
+						MozTransform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
+						msTransform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
+						OTransform: 'perspective(600px) rotateY(0deg) translate(-50%, -50%)',
 						zIndex: '2'
 					} : {
 						transform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
+						WebkitTransform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
+						MozTransform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
+						msTransform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
+						OTransform: 'perspective(600px) rotateY(180deg) translate(50%, -50%)',
 						zIndex: '1'
-					} 
+					}
 				}
 			>
-				
+
 				<div
 					className={[cl.arrow, cl.container].join(' ')}
 					onMouseOver={() => setIsBeat(true)}
 					onMouseOut={() => setIsBeat(false)}
-					onClick={() => setIsOpenProduct(!isOpenProduct)}
+					onClick={(e) => handlerOpenCloseIcon(e)}
 				>
 					{isOpenProduct ?
 						<FontAwesomeIcon beat={isBeat} icon={faDownLeftAndUpRightToCenter} />

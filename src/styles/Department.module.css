@@ -10,7 +10,7 @@
 	z-index: 11;
 	width: 40%;
 	align-self: self-end;
-	margin-bottom: 3px;
+	margin-bottom: 4px;
 }
 
 .title {
@@ -41,6 +41,7 @@
 .icon svg {
 	position: relative;
 	bottom: -15px;
+	color: var(--dark-brown);
 }
 
 .revert {
@@ -50,4 +51,32 @@
 .anchor {
 	position: absolute;
 	top: -103px;
+}
+
+@media screen and (max-width: 767px) {
+
+	.title {
+		font-size: 30px;
+		padding: 14px 30px;
+		gap: 8px;
+	}
+
+	.icon svg {
+		font-size: 20px;
+		bottom: -10px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+
+	.title {
+		font-size: 20px;
+		padding: 14px 10px;
+		gap: 10px;
+	}
+
+	.icon svg {
+		font-size: 17.5px;
+		bottom: -10px;
+	}
 }
