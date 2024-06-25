@@ -3,7 +3,6 @@ import cl from '../styles/Header.module.css'
 import { Corn } from '../helpers/icons'
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 const Header = () => {
 	const IMG = useMemo(() => {
@@ -24,7 +23,7 @@ const Header = () => {
 
 	const [windowWidth, setWindowWidth] = useState(0)
 	const [windowHeight, setWindowHeight] = useState(0)
-
+	const [stateScroll, setStateScroll] = useState('no')
 
 	const cornRef = createRef();
 	cornRef.current = []
@@ -32,6 +31,7 @@ const Header = () => {
 	const backgroundRef = useRef();
 
 	useEffect(() => {
+		setStateScroll(window.innerWidth)
 
 		try {
 			const { width } = document.body?.getBoundingClientRect()
@@ -45,7 +45,31 @@ const Header = () => {
 		}
 
 
-		window.addEventListener('resize', () => {
+		window.addEventListener('resize', (e) => {
+			if (stateScroll !== window.innerWidth) {
+				try {
+					setStateScroll(window.innerWidth)
+					const { width } = document.body?.getBoundingClientRect()
+					const { height } = headerRef.current?.getBoundingClientRect()
+					setWindowHeight(height)
+					setWindowWidth(width)
+					gsapTrigger(width, height)
+				} catch (error) {
+					console.log(error)
+				}
+			}
+		})
+		document.addEventListener('scroll', handlerOnScrollDocument)
+
+	}, [])
+
+	let scrolling = false
+	const setScrolling = (data) => scrolling = data
+
+	const handlerOnScrollDocument = () => {
+		// setStateScroll(window.scrollY)
+		if (window.scrollY > 300 && !scrolling) {
+			setScrolling(true)
 			try {
 				const { width } = document.body?.getBoundingClientRect()
 				const { height } = headerRef.current?.getBoundingClientRect()
@@ -55,9 +79,10 @@ const Header = () => {
 			} catch (error) {
 				console.log(error)
 			}
-		})
-
-	}, [])
+		} else if (window.scrollY < 300 && scrolling) {
+			setScrolling(false)
+		}
+	}
 
 	const gsapTrigger = (width, height) => {
 		cornRef.current.forEach((el) => {
@@ -77,11 +102,6 @@ const Header = () => {
 						scale(${getRandomArbitrary(0.5, 1.5)})
 					`,
 					duration: 2.5,
-					scrollTrigger: {
-						trigger: backgroundRef.current,
-						start: "bottom -= -10",
-						toggleActions: "play none none reverse"
-					}
 				})
 		})
 	}
@@ -128,6 +148,7 @@ const Header = () => {
 						<a className={cl.logo__img} href='/'>
 							<span>SAGE</span>
 							<span>coffee</span>
+							{stateScroll}
 						</a>
 					</div>
 				</div>

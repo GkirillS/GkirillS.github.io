@@ -29,7 +29,8 @@
 }
 
 .title a {
-	color: var(--dark-brown)
+	color: var(--dark-brown);
+	text-transform: uppercase;
 }
 
 .icon {
