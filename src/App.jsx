@@ -19,6 +19,9 @@ const App = () => {
     if (language) {
       localStorage.setItem('language', JSON.stringify(language));
       document.body.style.overflow = 'auto'
+    } else {
+      document.body.style.overflow = 'hidden'
+      setIsLoading(true)
     }
   }, [language])
 
@@ -30,7 +33,10 @@ const App = () => {
           language={language}
         />
       </main>
-      <Footer />
+      <Footer 
+        language={language}
+        setLanguage={setLanguage}
+      />
       {isLoading ?
         language ? null :
           <ModalLanguage

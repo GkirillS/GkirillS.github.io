@@ -2,7 +2,7 @@
     background-color: #1b1b1b;
     display: flex;
     gap: 20px;
-    padding: 20px;
+    padding: 60px;
 }
 
 .left {
@@ -11,8 +11,7 @@
 
 .body_left {
     display: flex;
-    flex-direction: column;
-    max-width: 300px;
+    gap: 150px;
 }
 .logo {
     display: flex;
@@ -24,14 +23,15 @@
 }
 .links {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     gap: 45px;
-    margin-top: 40px;
 }
 
 .link {
     list-style-type: none;
+    display: flex;
+    align-self: flex-start;
 }
 
 .link a {
@@ -59,6 +59,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    height: 100%;
 }
 
 .right iframe {
@@ -66,5 +67,113 @@
     border-radius: 15px;
     width: 100%;
     max-width: 700px;
-    height: 280px;
+}
+
+.description_job {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.description_job span {
+    font-family: var(--unbounded);
+    font-weight: bold;
+    color: var(--white);
+    font-size: 25px;
+}
+
+.description_job span:first-child {
+    white-space: nowrap;
+}
+
+.description_job span:last-child {
+    font-family: var(--nunito-sans);
+}
+
+.description_job p {
+    display: flex;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1450px) {
+    .body_left {
+        gap: 40px;
+        flex-direction: column-reverse;
+    }
+
+    .links {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+
+    .footer {
+        padding: 60px 40px;
+    }
+
+    .description_job span {
+        font-family: var(--unbounded);
+        font-weight: bold;
+        color: var(--white);
+        font-size: 20px;
+    }
+
+    .link a {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .footer {
+        padding: 60px 40px;
+        flex-direction: column;
+    }
+    
+    .body_left {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+    
+    .links {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .footer {
+        padding: 40px 15px;
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .body_left {
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+
+    
+    .links {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .description_job p {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .right iframe {
+        border: 0;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 700px;
+        height: 350px;
+    }
 }

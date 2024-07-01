@@ -60,7 +60,6 @@
 	overflow: hidden;
 	border-radius: 16px;
 	padding: 10px;
-
 }
 
 .flip {
@@ -141,8 +140,12 @@
 		transform: scale(1);
 	}
 
+	.product > * {
+		pointer-events: none;
+	}
+
 	.wrapper {
-		transition: transform 1s ease;
+		transition: all 0.6s ease;
 	}
 
 	.title {

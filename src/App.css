@@ -9,6 +9,10 @@
   --dark-brown: #47241c;
 }
 
+body {
+  background: var(--beige)
+}
+
 /* @font-face {
   font-family: var(--unbounded-regular);
   src: url(./assets/fonts/Unbounded/static/Unbounded-Regular.ttf);
@@ -42,4 +46,6 @@
   text-decoration: none;
   scroll-behavior: smooth;
   user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }

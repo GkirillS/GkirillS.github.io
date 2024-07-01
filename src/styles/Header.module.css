@@ -21,7 +21,7 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	z-index: 101;
+	z-index: 999;
 }
 
 .logo {
@@ -72,4 +72,8 @@
 .menu {
 	height: 100%;
 	width: 50px;
+}
+
+.headerRef {
+	transition: all 0.3s linear;
 }

@@ -18,23 +18,12 @@ const Product = ({ product, language }) => {
 			return defaultIMG;
 		}
 	}, [product])
-
-	// useEffect(() => {
-	// 	console.log(product)
-	// }, [])
-	//
-
-	function setVendor(element, property, value) {
-		element.style["webkit" + property] = value;
-		element.style["moz" + property] = value;
-		element.style["ms" + property] = value;
-		element.style["o" + property] = value;
-	}
+	
 	const title = useMemo(() => {
 		if (!product.capacity) return product[`title_` + language]
 		const capacity = '(' + product.capacity + ' ' + CAPACITY_EN_ML + ')'
 		return product[`title_` + language] + ' ' + capacity.replaceAll(' ', '\u00A0')
-	}, [product])
+	}, [product, language])
 
 	const [isBeat, setIsBeat] = useState(false);
 	const [isOpenProduct, setIsOpenProduct] = useState(false);
@@ -42,6 +31,7 @@ const Product = ({ product, language }) => {
 	const handlerOpenCloseIcon = (e) => {
 		e.stopPropagation()
 		setIsOpenProduct(!isOpenProduct)
+		// alert(isOpenProduct)
 	}
 
 	const handlerClickOpenProductMobile = (e) => {
@@ -84,11 +74,7 @@ const Product = ({ product, language }) => {
 						onClick={(e) => handlerOpenCloseIcon(e)}
 						style={isOpenProduct ? { opacity: '0' } : { opacity: '1' }}
 					>
-						{isOpenProduct ?
-							<FontAwesomeIcon beat={isBeat} icon={faDownLeftAndUpRightToCenter} />
-							:
 							<FontAwesomeIcon beat={isBeat} icon={faUpRightAndDownLeftFromCenter} />
-						}
 					</div>
 					<div
 						className={[cl.title, cl.container].join(' ')}
@@ -111,11 +97,7 @@ const Product = ({ product, language }) => {
 						onClick={(e) => handlerOpenCloseIcon(e)}
 						style={isOpenProduct ? { opacity: '1', zIndex: '1' } : { opacity: '0' }}
 					>
-						{isOpenProduct ?
 							<FontAwesomeIcon beat={isBeat} icon={faDownLeftAndUpRightToCenter} />
-							:
-							<FontAwesomeIcon beat={isBeat} icon={faUpRightAndDownLeftFromCenter} />
-						}
 					</div>
 					<img
 						src={IMG}
@@ -129,7 +111,7 @@ const Product = ({ product, language }) => {
 						style={isOpenProduct ? { opacity: '1' } : { opacity: '0' }}
 						className={[cl.description, cl.container].join(' ')}
 					>
-						{product.descriptinon_en}
+						{product[`descriptinon_${language}`]}
 					</div>
 				</div>
 			</div>

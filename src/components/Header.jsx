@@ -9,7 +9,7 @@ const Header = () => {
 		return require('../assets/image/backgrounds/header_bg.jpg')
 	})
 
-	const count_corn = Array.from({ length: 50 }, () => '')
+	const count_corn = Array.from({ length: 100 }, () => '')
 
 	function getRandomInt(min, max) {
 		const minCeiled = Math.ceil(min);
@@ -23,12 +23,14 @@ const Header = () => {
 
 	const [windowWidth, setWindowWidth] = useState(0)
 	const [windowHeight, setWindowHeight] = useState(0)
-	const [stateScroll, setStateScroll] = useState('no')
 
 	const cornRef = createRef();
 	cornRef.current = []
 	const headerRef = useRef();
 	const backgroundRef = useRef();
+
+	let stateScroll = window.innerWidth
+	const setStateScroll = (data) => scrolling += data
 
 	useEffect(() => {
 		setStateScroll(window.innerWidth)
@@ -47,8 +49,8 @@ const Header = () => {
 
 		window.addEventListener('resize', (e) => {
 			if (stateScroll !== window.innerWidth) {
+				setStateScroll(window.innerWidth)
 				try {
-					setStateScroll(window.innerWidth)
 					const { width } = document.body?.getBoundingClientRect()
 					const { height } = headerRef.current?.getBoundingClientRect()
 					setWindowHeight(height)
@@ -65,14 +67,16 @@ const Header = () => {
 
 	let scrolling = false
 	const setScrolling = (data) => scrolling = data
+	const [stateScrolling, setStateScrolling] = useState(false);
 
 	const handlerOnScrollDocument = () => {
-		// setStateScroll(window.scrollY)
+		console.log(scrolling);
 		if (window.scrollY > 300 && !scrolling) {
 			setScrolling(true)
+			setStateScrolling(true);
 			try {
-				const { width } = document.body?.getBoundingClientRect()
-				const { height } = headerRef.current?.getBoundingClientRect()
+				const { width } = document.body?.getBoundingClientRect() ?? 0
+				const { height } = headerRef.current?.getBoundingClientRect() ?? 0
 				setWindowHeight(height)
 				setWindowWidth(width)
 				gsapTrigger(width, height)
@@ -81,6 +85,7 @@ const Header = () => {
 			}
 		} else if (window.scrollY < 300 && scrolling) {
 			setScrolling(false)
+			setStateScrolling(false);
 		}
 	}
 
@@ -124,7 +129,7 @@ const Header = () => {
 						background: `url(${IMG})`,
 						backgroundPosition: 'center center',
 						backgroundRepeat: 'no-repeat',
-						backgroundSize: 'cover'
+						backgroundSize: 'cover',
 					}}
 				>
 
@@ -140,7 +145,8 @@ const Header = () => {
 					position: 'sticky',
 					top: '0',
 					zIndex: '100',
-					overflow: 'hidden'
+					overflow: 'hidden',
+					opacity: stateScrolling ? '1' : '0'
 				}}
 			>
 				<div className={cl.wrapper}>
@@ -148,7 +154,7 @@ const Header = () => {
 						<a className={cl.logo__img} href='/'>
 							<span>SAGE</span>
 							<span>coffee</span>
-							{stateScroll}
+							{stateScrolling + ''}
 						</a>
 					</div>
 				</div>

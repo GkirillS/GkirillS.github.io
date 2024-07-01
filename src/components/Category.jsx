@@ -15,7 +15,7 @@ const Category = ({ category, products, language }) => {
 			>
 				<div className={cl.title}>
 					<a href={'#' + category.name_en}>
-					{category.name_en}
+					{category[`name_${language}`]}
 					</a>
 				</div>
 			</div>

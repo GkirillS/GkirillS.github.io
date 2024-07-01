@@ -3,8 +3,11 @@ import React from 'react'
 import cl from '../styles/Footer.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTelegram, faTiktok } from '@fortawesome/free-brands-svg-icons';
-const Footer = () => {
-
+import { faAt, faLanguage } from '@fortawesome/free-solid-svg-icons';
+const Footer = ({language, setLanguage}) => {
+	const handleClickChangeLang = () => {
+		setLanguage(null);
+	};
 	return (
 		<div className={cl.footer}>
 			<div className={cl.left}>
@@ -32,9 +35,37 @@ const Footer = () => {
 									size='xl'
 									icon={faTiktok}
 								/>
+								
+							</a>
+						</li>
+						<li className={cl.link}>
+							<a rel="noreferrer" href="mailto:sgsageproject@gmail.com" target='_blank'>
+								<FontAwesomeIcon
+									size='xl'
+									icon={faAt}
+								/>
 							</a>
 						</li>
 					</ul>
+					<div className={cl.description_job}>
+						<p>
+							<span>Время работы:</span>
+							<span>каждый день 09:00-21:00</span>
+						</p>
+						<p>
+							<span>Адрес:</span>
+							<span>Батуми, Хайдара Абашидзе 13</span>
+						</p>
+						<p>
+							<span>Выбрать язык:</span>
+							<span style={{cursor: 'pointer'}} onClick={handleClickChangeLang}>
+								<FontAwesomeIcon
+									size='xl'
+									icon={faLanguage}
+								/>
+							</span>
+						</p>
+					</div>
 				</div>
 			</div>
 			<div className={cl.right}>
@@ -43,7 +74,6 @@ const Footer = () => {
 						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.5138587186543!2d41.62766497667447!3d41.64463837126842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4067875dcab8548b%3A0x7513e639e92c0ed7!2sSAGE%20coffee!5e0!3m2!1sru!2sby!4v1718695702769!5m2!1sru!2sby"
 						loading="lazy"
 						referrerpolicy="no-referrer-when-downgrade">
-
 					</iframe>
 				</div>
 			</div>
