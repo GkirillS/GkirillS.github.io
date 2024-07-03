@@ -1,0 +1,14 @@
+{
+	"departments": {
+		"kitchen": "Kitchen",
+		"bar": "Bar"
+	},
+	"footer": {
+		"timeWork": "Working hours:",
+		"everyday": "every day",
+		"address": "Address:",
+		"addresStreet": "Batumi, Khaidara Abashidze 13", 
+		"question": "For cooperation issues:",
+		"language": "Select language:"
+	}
+}

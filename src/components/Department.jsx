@@ -3,6 +3,7 @@ import cl from '../styles/Department.module.css'
 import Category from './Category'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTurnDown } from '@fortawesome/free-solid-svg-icons'
+import { LOCALES } from '../locales'
 
 const Department = ({ nameRevert, name, categories, products, language }) => {
 
@@ -22,7 +23,7 @@ const Department = ({ nameRevert, name, categories, products, language }) => {
 						{nameRevert}
 					</span> */}
 					<a attr-link={name} href={'#' + name}>
-						{name}
+						{LOCALES[language]?.departments?.[name]}
 					</a>
 					<div
 						onClick={revert}

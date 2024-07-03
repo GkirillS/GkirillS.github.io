@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import cl from '../styles/Product.module.css'
-import { CAPACITY_EN_ML, CURRENCY_GE, LANGUAGE } from '../helpers/const'
+import { CAPACITY_EN_ML, CURRENCY, } from '../helpers/const'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownLeftAndUpRightToCenter, faUpRightAndDownLeftFromCenter } from '@fortawesome/free-solid-svg-icons';
 
@@ -65,7 +65,7 @@ const Product = ({ product, language }) => {
 						className={[cl.price, cl.container].join(' ')}
 						style={isOpenProduct ? { opacity: '0' } : { opacity: '1' }}
 					>
-						{product.price + ' ' + CURRENCY_GE}
+						{product.price + ' ' + CURRENCY}
 					</div>
 					<div
 						className={[cl.arrow, cl.container].join(' ')}

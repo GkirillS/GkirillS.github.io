@@ -60,25 +60,18 @@ const Categories = ({language}) => {
 		getCategories()
 	}, [])
 
-	// useEffect(() => {
-	// 	console.log(bar, kitchen)
-	// }, [bar, kitchen])
-	// useEffect(() => {
-	// 	console.log(catalogBar, catalogKitchen)
-	// }, [catalogBar, catalogKitchen])
-
 	return (
 		<section className={cl.menu}>
 			<Department
-				nameRevert={'Bar'}
-				name={'Kitchen'}
+				nameRevert={'bar'}
+				name={'kitchen'}
 				categories={catalogKitchen}
 				language={language}
 				products={kitchen}
 			/>
 			<Department
-				nameRevert={'Kitchen'}
-				name={'Bar'}
+				nameRevert={'kitchen'}
+				name={'bar'}
 				categories={catalogBar}
 				products={bar}
 				language={language}

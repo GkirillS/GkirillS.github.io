@@ -67,13 +67,11 @@ const Header = () => {
 
 	let scrolling = false
 	const setScrolling = (data) => scrolling = data
-	const [stateScrolling, setStateScrolling] = useState(false);
+	const [stateScrolling, setStateScrolling] = useState(true);
 
 	const handlerOnScrollDocument = () => {
-		console.log(scrolling);
 		if (window.scrollY > 300 && !scrolling) {
 			setScrolling(true)
-			setStateScrolling(true);
 			try {
 				const { width } = document.body?.getBoundingClientRect() ?? 0
 				const { height } = headerRef.current?.getBoundingClientRect() ?? 0
@@ -85,7 +83,13 @@ const Header = () => {
 			}
 		} else if (window.scrollY < 300 && scrolling) {
 			setScrolling(false)
+		}
+
+		if (window.scrollY > 250 && !scrolling) {
+			setStateScrolling(true);
+		} else if (window.scrollY < 250 && scrolling) {
 			setStateScrolling(false);
+
 		}
 	}
 
@@ -154,7 +158,6 @@ const Header = () => {
 						<a className={cl.logo__img} href='/'>
 							<span>SAGE</span>
 							<span>coffee</span>
-							{stateScrolling + ''}
 						</a>
 					</div>
 				</div>

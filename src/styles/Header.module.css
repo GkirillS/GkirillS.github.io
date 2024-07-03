@@ -56,7 +56,17 @@
 .logo__img span {
 	display: block;
 	z-index: 1;
-	background: var(--beige);
+	/* background: var(--beige); */
+	text-shadow:
+		var(--beige) 0 0 20px,
+		var(--beige) 0 0 20px,
+		var(--beige) 0 0 20px,
+		var(--beige) 0 0 20px,
+		var(--beige) 0 0 20px,
+		var(--beige) 0 0 20px,
+		var(--beige) 0 0 20px,
+		var(--beige) 0 0 20px;
+	;
 }
 
 .logo__img span:last-child {
@@ -75,5 +85,5 @@
 }
 
 .headerRef {
-	transition: all 0.3s linear;
+	transition: all 1s ease-out;
 }

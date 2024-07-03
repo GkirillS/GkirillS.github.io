@@ -1,13 +1,18 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import React from 'react'
+import React, { useEffect } from 'react'
 import cl from '../styles/Footer.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTelegram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faAt, faLanguage } from '@fortawesome/free-solid-svg-icons';
-const Footer = ({language, setLanguage}) => {
+import { LOCALES } from '../locales';
+const Footer = ({language, setIsOpenModalLanguage}) => {
 	const handleClickChangeLang = () => {
-		setLanguage(null);
+		setIsOpenModalLanguage(true);
 	};
+
+	useEffect(() => {
+		console.log(LOCALES)
+	}, [])
 	return (
 		<div className={cl.footer}>
 			<div className={cl.left}>
@@ -49,15 +54,23 @@ const Footer = ({language, setLanguage}) => {
 					</ul>
 					<div className={cl.description_job}>
 						<p>
-							<span>Время работы:</span>
-							<span>каждый день 09:00-21:00</span>
+							<span>{LOCALES[language]?.footer?.timeWork}</span>
+							<span>{LOCALES[language]?.footer?.everyday} 09:00-21:00</span>
 						</p>
 						<p>
-							<span>Адрес:</span>
-							<span>Батуми, Хайдара Абашидзе 13</span>
+							<span>{LOCALES[language]?.footer?.address}</span>
+							<span>{LOCALES[language]?.footer?.addresStreet}</span>
 						</p>
 						<p>
-							<span>Выбрать язык:</span>
+							<span>{LOCALES[language]?.footer?.question}</span>
+							<span>
+								<a rel="noreferrer" href="mailto:sgsageproject@gmail.com" target='_blank'>
+									sgsageproject@gmail.com
+								</a>
+							</span>
+						</p>
+						<p>
+							<span>{LOCALES[language]?.footer?.language}</span>
 							<span style={{cursor: 'pointer'}} onClick={handleClickChangeLang}>
 								<FontAwesomeIcon
 									size='xl'

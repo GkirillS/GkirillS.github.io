@@ -1,0 +1,14 @@
+{
+	"departments": {
+		"kitchen": "Кухня",
+		"bar": "Бар"
+	},
+	"footer": {
+		"timeWork": "Время работы:",
+		"everyday": "каждый день",
+		"address": "Адрес:",
+		"addresStreet": "Батуми, Хайдара Абашидзе 13", 
+		"question": "По вопросам сотрудничеcтва:",
+		"language": "Выбрать язык:"
+	}
+}

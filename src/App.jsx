@@ -8,6 +8,7 @@ import ModalLanguage from './components/ModalLanguage';
 const App = () => {
   const [language, setLanguage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [isOpenModalLanguage, setIsOpenModalLanguage] = useState(false);
   useEffect(() => {
     const local = JSON.parse(localStorage.getItem('language'))
     if (local) setLanguage(local)
@@ -23,6 +24,7 @@ const App = () => {
       document.body.style.overflow = 'hidden'
       setIsLoading(true)
     }
+    setIsOpenModalLanguage(false)
   }, [language])
 
   return (
@@ -35,10 +37,10 @@ const App = () => {
       </main>
       <Footer 
         language={language}
-        setLanguage={setLanguage}
+        setIsOpenModalLanguage={setIsOpenModalLanguage}
       />
       {isLoading ?
-        language ? null :
+        language && !isOpenModalLanguage? null :
           <ModalLanguage
             language={language}
             setLanguage={setLanguage}
