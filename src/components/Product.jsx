@@ -9,7 +9,9 @@ const Product = ({ product, language }) => {
 
 	const IMG = useMemo(() => {
 		try {
+			console.log('this')
 			const img = require('../assets/image/products/' + product.img + '.jpg')
+			console.log(img)
 			setIsDefault(false)
 			return img
 		} catch (error) {
@@ -55,7 +57,7 @@ const Product = ({ product, language }) => {
 				>
 					<img
 						src={IMG}
-						alt={product.title_en}
+						alt={product.img}
 						style={{
 							filter: isDefault ? 'blur(2px)' : ''
 						}}
@@ -101,7 +103,7 @@ const Product = ({ product, language }) => {
 					</div>
 					<img
 						src={IMG}
-						alt={product.title_en}
+						alt={product.img}
 						style={{
 							filter: isDefault ? 'blur(2px)' : ''
 						}}
