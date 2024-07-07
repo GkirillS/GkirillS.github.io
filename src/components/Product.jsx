@@ -9,13 +9,13 @@ const Product = ({ product, language }) => {
 
 	const IMG = useMemo(() => {
 		try {
-			console.log('this')
+			console.log('this`')
 			const img = require('../assets/image/products/' + product.img + '.jpg')
 			console.log(img)
 			setIsDefault(false)
 			return img
 		} catch (error) {
-			const defaultIMG = require('../assets/image/products/default.jpg')
+			const defaultIMG = require('../assets/image/default.jpg')
 			setIsDefault(true)
 			return defaultIMG;
 		}
@@ -33,7 +33,6 @@ const Product = ({ product, language }) => {
 	const handlerOpenCloseIcon = (e) => {
 		e.stopPropagation()
 		setIsOpenProduct(!isOpenProduct)
-		// alert(isOpenProduct)
 	}
 
 	const handlerClickOpenProductMobile = (e) => {
