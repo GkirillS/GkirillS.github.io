@@ -9,10 +9,6 @@ const Footer = ({language, setIsOpenModalLanguage}) => {
 	const handleClickChangeLang = () => {
 		setIsOpenModalLanguage(true);
 	};
-
-	useEffect(() => {
-		console.log(LOCALES)
-	}, [])
 	return (
 		<div className={cl.footer}>
 			<div className={cl.left}>

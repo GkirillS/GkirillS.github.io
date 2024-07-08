@@ -29,7 +29,9 @@ const App = () => {
 
   return (
     <div>
-      <Header />
+      <Header
+        setIsOpenModalLanguage={setIsOpenModalLanguage}
+      />
       <main>
         <Menu
           language={language}

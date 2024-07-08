@@ -3,8 +3,15 @@ import cl from '../styles/Header.module.css'
 import { Corn } from '../helpers/icons'
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe, faLanguage } from '@fortawesome/free-solid-svg-icons';
 
-const Header = () => {
+const Header = ({setIsOpenModalLanguage}) => {
+
+	const handleClickChangeLang = () => {
+		setIsOpenModalLanguage(true);
+	};
+	
 	const IMG = useMemo(() => {
 		return require('../assets/image/backgrounds/header_bg.jpg')
 	})
@@ -136,7 +143,15 @@ const Header = () => {
 						backgroundSize: 'cover',
 					}}
 				>
-
+					<div
+						className={cl.icon_language}
+						onClick={() => handleClickChangeLang()}
+					>
+						<FontAwesomeIcon
+							size='xl'
+							icon={faGlobe}
+						/>
+					</div>
 				</div>
 			</header>
 			<header

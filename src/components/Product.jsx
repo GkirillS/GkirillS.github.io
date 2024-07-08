@@ -37,6 +37,7 @@ const Product = ({ product, language }) => {
 
 	const handlerClickOpenProductMobile = (e) => {
 		if (document.body.getBoundingClientRect().width <= 480) {
+			if (!product[`descriptinon_${language}`]) return;
 			handlerOpenCloseIcon(e)
 		}
 	}
@@ -68,6 +69,7 @@ const Product = ({ product, language }) => {
 					>
 						{product.price + ' ' + CURRENCY}
 					</div>
+					{product[`descriptinon_${language}`] ?
 					<div
 						className={[cl.arrow, cl.container].join(' ')}
 						onMouseOver={() => setIsBeat(true)}
@@ -77,6 +79,7 @@ const Product = ({ product, language }) => {
 					>
 							<FontAwesomeIcon beat={isBeat} icon={faUpRightAndDownLeftFromCenter} />
 					</div>
+					: null}
 					<div
 						className={[cl.title, cl.container].join(' ')}
 						style={isOpenProduct ? { opacity: '0' } : { opacity: '1' }}
@@ -91,6 +94,7 @@ const Product = ({ product, language }) => {
 				<div
 					className={[cl.back, cl.face].join(' ')}
 				>
+					{product[`descriptinon_${language}`] ?
 					<div
 						className={[cl.arrow, cl.container].join(' ')}
 						onMouseOver={() => setIsBeat(true)}
@@ -100,6 +104,7 @@ const Product = ({ product, language }) => {
 					>
 							<FontAwesomeIcon beat={isBeat} icon={faDownLeftAndUpRightToCenter} />
 					</div>
+					: null}
 					<img
 						src={IMG}
 						alt={product.img}

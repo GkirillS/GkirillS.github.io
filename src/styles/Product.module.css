@@ -84,7 +84,7 @@
 	font-family: var(--unbounded);
 	font-weight: 400;
 	font-size: 24px;
-	color: var(--dark-brown)
+	color: var(--black)
 }
 
 .arrow {
@@ -92,7 +92,7 @@
 	right: 10px;
 	padding: 15px;
 	font-size: 24px;
-	color: var(--dark-brown)
+	color: var(--black)
 }
 
 .title {
@@ -102,14 +102,14 @@
 	font-family: var(--unbounded);
 	font-weight: 400;
 	font-size: 24px;
-	color: var(--dark-brown)
+	color: var(--black)
 }
 
 .description {
 	bottom: 10px;
 	left: 10px;
 	width: calc(100% - 20px);
-	color: var(--dark-brown);
+	color: var(--black);
 	font-family: var(--unbounded);
 	font-size: 20px;
 	max-height: 70%;
@@ -150,5 +150,9 @@
 
 	.title {
 		font-size: 18px;
+	}
+
+	.description {
+		font-size: 16px;
 	}
 }
