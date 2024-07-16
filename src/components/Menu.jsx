@@ -17,7 +17,9 @@ const Categories = ({language}) => {
 	const getCategories = async () => {
 		try {
 			setIsLoading(false)
+			console.log('start bar')
 			const resposneBar = await axios.get(API_BAR)
+			console.log('end bar')
 			const resposneKitchen = await axios.get(API_KITCHEN)
 			console.log(resposneBar.data);
 			console.log(resposneKitchen.data);

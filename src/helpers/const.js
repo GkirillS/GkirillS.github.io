@@ -3,4 +3,4 @@ export const CAPACITY_EN_ML = 'ml.'
 export const CURRENCY = 'gel'
 export const LANGUAGE = 'en'
 export const API_KITCHEN = 'https://script.googleusercontent.com/macros/echo?user_content_key=lBkn1l6Tz33_fvNChyb_w2FjyDzgBqcR_D9glAfA74ka17YHOlP3zEhpHLGuyfwnjaQV0fMxGl8reuLm97pMkSQ0bh6pjfYEm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnEngA94tGosX6kZoeljocz8mjzwRi7KlNhgf2FG-3DCDz9E5tG0essvagEQDrvLxSBdaJSWeNyeRjx064kq1BlzG7UlnB9Q8zg&lib=Mipw8_CO-NkaYSUhu5o7Thm18-ynwPTZJ';
-export const API_BAR = 'https://script.google.com/macros/s/AKfycbx5mv7heR4B_B5RCn_0LtEQp_8HTrZzf6gNzkV5o4Cjutm1zpC5Ac7K7HEUuDsGlM3nsQ/exec'
+export const API_BAR = 'https://script.googleusercontent.com/macros/echo?user_content_key=3_GtF0eVHc0AkySgNdP0hmvCmLLQurYFyd9rqdvp82ueOpapSdRVMgg8it0X2ML5GiBqUoBDx-AbEW6TfF2ao1REQS3z78-ym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnDkaBbpxwZ8pBTTKD5GPDH474HUQlAUUIX4F-Qqf38-DZm1VDZy-xy_FgsbydUiWjADsHGBo-n_cH3hRLhd4xtYIz9ACSJ_g6dz9Jw9Md8uu&lib=MQO-qZkaC1xlDV3ByJ77Bom18-ynwPTZJ'
