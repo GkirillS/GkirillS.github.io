@@ -4,10 +4,10 @@ import ContentLoader from 'react-content-loader'
 const LoaderMenu = (props) => {
 
   const rows = 2
-  const coverHeight = 456
-  const coverWidth = 380
-  const padding = 80
-  const columns = Math.floor(window.innerWidth / (coverWidth + padding))
+  const coverHeight = window.innerWidth > 480 ? 456 : 360
+  const coverWidth = window.innerWidth > 480 ? 380 : 300
+  const padding = window.innerWidth > 480 ? 80 : 60
+  const columns = Math.floor(window.innerWidth / (coverWidth + (window.innerWidth > 480 ? padding : 0)))
   const speed = 2
 
   const coverHeightWithPadding = coverHeight + padding

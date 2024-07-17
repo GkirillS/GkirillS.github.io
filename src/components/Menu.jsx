@@ -75,6 +75,9 @@ const Categories = ({language}) => {
 
 	return (
 		<section className={cl.menu}>
+						<LoaderMenu
+				className={cl.loader}
+			/>
 			{!isLoadingBar ?
 			<Department
 				nameRevert={'bar'}

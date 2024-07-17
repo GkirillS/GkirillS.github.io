@@ -9,3 +9,9 @@
 .loader {
 	padding: 0 40px;
 }
+
+@media screen and (max-width: 480px) {	
+	.loader {
+		padding: 0 30px;
+	}
+}
