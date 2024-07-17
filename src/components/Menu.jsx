@@ -5,6 +5,7 @@ import axios from 'axios'
 import Skeleton from './Skeleton'
 import { API_BAR, API_KITCHEN } from '../helpers/const'
 import Department from './Department'
+import LoaderMenu from './LoaderMenu'
 
 const Categories = ({language}) => {
 	const [bar, setBar] = useState({})
@@ -12,34 +13,42 @@ const Categories = ({language}) => {
 	const [catalogBar, SetCatalogBar] = useState([])
 	const [catalogKitchen, SetCatalogKitchen] = useState([])
 
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoadingBar, setIsLoadingBar] = useState(false)
+	const [isLoadingKitchen, setIsLoadingKitchen] = useState(false)
 
-	const getCategories = async () => {
+	const getKitchen = async () => {
 		try {
-			setIsLoading(false)
-			console.log('start bar')
-			const resposneBar = await axios.get(API_BAR)
-			console.log('end bar')
 			const resposneKitchen = await axios.get(API_KITCHEN)
-			console.log(resposneBar.data);
-			console.log(resposneKitchen.data);
-			localStorage.setItem('catalogBar', JSON.stringify(resposneBar.data.catalogs))
 			localStorage.setItem('catalogKitchen', JSON.stringify(resposneKitchen.data.catalogs))
-			SetCatalogBar(resposneBar.data.catalogs)
 			SetCatalogKitchen(resposneKitchen.data.catalogs)
-
-
-			delete resposneBar.data.catalogs
 			delete resposneKitchen.data.catalogs
-			localStorage.setItem('bar', JSON.stringify(resposneBar.data))
 			localStorage.setItem('kitchen', JSON.stringify(resposneKitchen.data))
-			setBar(resposneBar.data)
 			setKitchen(resposneKitchen.data)
 		} catch (error) {
 			console.log(error)
 		} finally {
-			setIsLoading(true)
+			setIsLoadingBar(false)
 		}
+	}
+
+	const getBar = async () => {
+		try {
+			const resposneBar = await axios.get(API_BAR)
+			localStorage.setItem('catalogBar', JSON.stringify(resposneBar.data.catalogs))
+			SetCatalogBar(resposneBar.data.catalogs)
+			delete resposneBar.data.catalogs
+			localStorage.setItem('bar', JSON.stringify(resposneBar.data))
+			setBar(resposneBar.data)
+			
+		} catch (error) {
+			console.log(error)
+		} finally {
+			setIsLoadingKitchen(false)
+		}
+	}
+	const getCategories = () => {
+		getKitchen()
+		getBar()
 	}
 
 	const getCategoriesFromLocalStorage = () => {
@@ -52,6 +61,8 @@ const Categories = ({language}) => {
 			setKitchen(kitchen ?? {})
 			SetCatalogBar(catalogBar ?? [])
 			SetCatalogKitchen(catalogKitchen ?? [])
+			if (!catalogBar) setIsLoadingBar(true)
+			if (!catalogKitchen) setIsLoadingKitchen(true)
 		} catch (error) {
 			console.log(error)
 		}
@@ -64,20 +75,31 @@ const Categories = ({language}) => {
 
 	return (
 		<section className={cl.menu}>
+			{!isLoadingBar ?
 			<Department
 				nameRevert={'bar'}
 				name={'kitchen'}
 				categories={catalogKitchen}
 				language={language}
 				products={kitchen}
+			/> :
+			<LoaderMenu 
+				className={cl.loader}
 			/>
+			}
+			{!isLoadingKitchen ?
 			<Department
 				nameRevert={'kitchen'}
 				name={'bar'}
 				categories={catalogBar}
 				products={bar}
 				language={language}
+			/> :
+			<LoaderMenu
+				className={cl.loader}
 			/>
+			}
+			
 		</section>
 	)
 }

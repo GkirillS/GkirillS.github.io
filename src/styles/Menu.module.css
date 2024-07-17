@@ -1,9 +1,11 @@
 .menu {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	background-color: var(--beige);
 	padding-bottom: 180px;
 }
 
-.categories {
+.loader {
+	padding: 0 40px;
 }
