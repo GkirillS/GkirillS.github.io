@@ -15,6 +15,10 @@ const ModalLanguage = ({language, setLanguage}) => {
                     className={[cl.language, language === 'ru' && cl.active].join(' ')}
                     onClick={() => setLanguage('ru')}
                 >RU</div>
+                <div
+                    className={[cl.language, language === 'ge' && cl.active].join(' ')}
+                    onClick={() => setLanguage('ge')}
+                >GE</div>
             </div>
         </div>
     </div>
