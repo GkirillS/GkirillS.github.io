@@ -8,6 +8,7 @@ const Product = ({ product, language }) => {
 	const [isDefault, setIsDefault] = useState(false);
 
 	const IMG = useMemo(() => {
+		console.log('../assets/image/products/' + product.img + '.jpg')
 		try {
 			const img = require('../assets/image/products/' + product.img + '.jpg')
 			setIsDefault(false)
