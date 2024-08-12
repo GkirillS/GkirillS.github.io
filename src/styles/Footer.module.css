@@ -90,7 +90,10 @@
     white-space: nowrap;
 }
 
-.description_job span:last-child {
+.description_job div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     font-family: var(--nunito-sans);
 }
 

@@ -51,7 +51,10 @@ const Footer = ({language, setIsOpenModalLanguage}) => {
 					<div className={cl.description_job}>
 						<p>
 							<span>{LOCALES[language]?.footer?.timeWork}</span>
-							<span>{LOCALES[language]?.footer?.everyday} 09:00-21:00</span>
+							<div>
+								<span>{LOCALES[language]?.footer?.bydni}</span>
+								<span>{LOCALES[language]?.footer?.weekend}</span>
+							</div>
 						</p>
 						<p>
 							<span>{LOCALES[language]?.footer?.address}</span>
