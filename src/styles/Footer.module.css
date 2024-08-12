@@ -180,7 +180,8 @@
         font-size: 16px;
     }
 
-    .description_job span:last-child {
+    .description_job div span:first-child,
+    .description_job div span:last-child {
         font-size: 14px;
     }   
     
