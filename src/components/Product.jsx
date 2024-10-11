@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import cl from '../styles/Product.module.css'
 import { CAPACITY_EN_ML, CURRENCY, } from '../helpers/const'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,6 @@ const Product = ({ product, language }) => {
 	const [isDefault, setIsDefault] = useState(false);
 
 	const IMG = useMemo(() => {
-		console.log('../assets/image/products/' + product.img + '.jpg')
 		try {
 			const img = require('../assets/image/products/' + product.img + '.jpg')
 			setIsDefault(false)
