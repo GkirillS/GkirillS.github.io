@@ -3,6 +3,8 @@
     inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 101;
+    backdrop-filter: blur(11px);
+    -webkit-backdrop-filter: blur(11px);
 }
 
 .modal {

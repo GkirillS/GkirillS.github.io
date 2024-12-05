@@ -13,28 +13,6 @@ body {
   background: var(--beige)
 }
 
-/* @font-face {
-  font-family: var(--unbounded-regular);
-  src: url(./assets/fonts/Unbounded/static/Unbounded-Regular.ttf);
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: var(--unbounded-semibold);
-  src: url(./assets/fonts/Unbounded/static/Unbounded-SemiBold.ttf);
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: var(--nunito-sans-regular);
-  src: url(./assets/fonts/Nunito_Sans/static/NunitoSans_10pt-Regular.ttf);
-}
-
-@font-face {
-  font-family: var(--nunito-sans-light);
-  src: url(./assets/fonts/Nunito_Sans/static/NunitoSans_10pt-Light.ttf);
-} */
-
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Unbounded:wght@200..900&display=swap');
 
@@ -48,4 +26,22 @@ body {
   user-select: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+}
+
+.products_animation-enter {
+  opacity: 0;
+}
+
+.products_animation-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.products_animation-exit {
+  opacity: 1;
+}
+
+.products_animation-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
 }

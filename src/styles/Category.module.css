@@ -9,11 +9,8 @@
 	justify-content: space-between;
 	padding: 20px 50px;
 	background-color: var(--beige);
-	position: sticky;
-	top: 103px;
 	height: fit-content;
-	z-index: 10;
-	border-bottom: 3px solid var(--green);
+	border-bottom: 3px solid var(--dark-brown);
 	margin-top: -98px;
 }
 
@@ -39,12 +36,12 @@
 	grid-template-rows: repeat(auto-fill, 456px);
 	justify-content: center;
 	gap: 120px 80px;
-	padding: 50px 50px 145px;
+	padding: 60px 50px 60px;
 }
 
 .anchor {
 	position: absolute;
-	top: -103px;
+	top: -270px;
 }
 
 @media screen and (max-width: 767px) {
@@ -67,7 +64,12 @@
 		grid-template-columns: repeat(auto-fill, 300px);
 		grid-template-rows: repeat(auto-fill, 380px);
 		gap: 80px 60px;
-		padding: 50px 20px 145px;
+		padding: 40px 20px 40px;
+	}
+
+	.anchor {
+		position: absolute;
+		top: -220px;
 	}
 }
 
@@ -91,6 +93,11 @@
 		grid-template-columns: repeat(auto-fill, 300px);
 		grid-template-rows: repeat(auto-fill, 380px);
 		gap: 40px 60px;
-		padding: 50px 20px 58px;
+		padding: 20px 20px 20px;
+	}
+
+	.anchor {
+		position: absolute;
+		top: -200px;
 	}
 }

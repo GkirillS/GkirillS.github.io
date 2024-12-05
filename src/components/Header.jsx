@@ -1,20 +1,25 @@
-import React, { createRef, useEffect, useMemo, useRef, useState } from 'react'
+import React, { createRef, useEffect, useMemo, useRef } from 'react'
 import cl from '../styles/Header.module.css'
 import { Corn } from '../helpers/icons'
 import gsap from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faLanguage } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { LOCALES } from '../locales';
 
-const Header = ({setIsOpenModalLanguage}) => {
+const Header = ({
+	setIsOpenModalLanguage,
+	catalogBar,
+	catalogKitchen,
+	language,
+	setSelectedCatalog,
+	setSelectedCategory,
+	selectedCatalog,
+	selectedCategory
+}) => {
 
 	const handleClickChangeLang = () => {
 		setIsOpenModalLanguage(true);
 	};
-	
-	const IMG = useMemo(() => {
-		return require('../assets/image/backgrounds/header_bg.jpg')
-	})
 
 	const count_corn = Array.from({ length: 100 }, () => '')
 
@@ -28,25 +33,21 @@ const Header = ({setIsOpenModalLanguage}) => {
 		return Math.random() * (max - min) + min;
 	}
 
-	const [windowWidth, setWindowWidth] = useState(0)
-	const [windowHeight, setWindowHeight] = useState(0)
 
 	const cornRef = createRef();
 	cornRef.current = []
 	const headerRef = useRef();
-	const backgroundRef = useRef();
 
 	let stateScroll = window.innerWidth
 	const setStateScroll = (data) => scrolling += data
 
 	useEffect(() => {
+		console.log(catalogBar, catalogKitchen)
 		setStateScroll(window.innerWidth)
 
 		try {
 			const { width } = document.body?.getBoundingClientRect()
 			const { height } = headerRef.current?.getBoundingClientRect()
-			setWindowHeight(height)
-			setWindowWidth(width)
 			gsapTrigger(width, height)
 
 		} catch (error) {
@@ -60,45 +61,15 @@ const Header = ({setIsOpenModalLanguage}) => {
 				try {
 					const { width } = document.body?.getBoundingClientRect()
 					const { height } = headerRef.current?.getBoundingClientRect()
-					setWindowHeight(height)
-					setWindowWidth(width)
 					gsapTrigger(width, height)
 				} catch (error) {
 					console.log(error)
 				}
 			}
 		})
-		document.addEventListener('scroll', handlerOnScrollDocument)
-
 	}, [])
 
 	let scrolling = false
-	const setScrolling = (data) => scrolling = data
-	const [stateScrolling, setStateScrolling] = useState(true);
-
-	const handlerOnScrollDocument = () => {
-		if (window.scrollY > 300 && !scrolling) {
-			setScrolling(true)
-			try {
-				const { width } = document.body?.getBoundingClientRect() ?? 0
-				const { height } = headerRef.current?.getBoundingClientRect() ?? 0
-				setWindowHeight(height)
-				setWindowWidth(width)
-				gsapTrigger(width, height)
-			} catch (error) {
-				console.log(error)
-			}
-		} else if (window.scrollY < 300 && scrolling) {
-			setScrolling(false)
-		}
-
-		if (window.scrollY > 250 && !scrolling) {
-			setStateScrolling(true);
-		} else if (window.scrollY < 250 && scrolling) {
-			setStateScrolling(false);
-
-		}
-	}
 
 	const gsapTrigger = (width, height) => {
 		cornRef.current.forEach((el) => {
@@ -128,44 +99,38 @@ const Header = ({setIsOpenModalLanguage}) => {
 		}
 	}
 
+	const TABS = [
+		{ name: 'kitchen', key: 'kitchen' },
+		{ name: 'bar', key: 'bar' },
+	]
+
+	const handleClickTab = (tab) => {
+		setSelectedCatalog(tab.key)
+		const catalog = tab.key === 'kitchen' ? catalogKitchen : catalogBar
+		setSelectedCategory(catalog[0].name_en)
+	}
+
+	const handleClickCategory = (category) => {
+		setSelectedCategory(category.name_en)
+	}
+
+	const catalog = useMemo(() => {
+		if (selectedCatalog === 'kitchen') return catalogKitchen
+		if (selectedCatalog === 'bar') return catalogBar
+	}, [selectedCatalog, catalogKitchen, catalogBar])
+
 	return (
 		<>
-			<header
-				className={cl.header}
-			>
-				<div
-					ref={backgroundRef}
-					className={cl.background}
-					style={{
-						background: `url(${IMG})`,
-						backgroundPosition: 'center center',
-						backgroundRepeat: 'no-repeat',
-						backgroundSize: 'cover',
-					}}
-				>
-					<div
-						className={cl.icon_language}
-						onClick={() => handleClickChangeLang()}
-					>
-						<FontAwesomeIcon
-							size='xl'
-							icon={faGlobe}
-						/>
-					</div>
-				</div>
-			</header>
 			<header
 				ref={headerRef}
 				className={[cl.header, cl.headerRef].join(' ')}
 				style={{
 					background: 'var(--beige)',
 					height: '103px',
-					marginBottom: '297px',
 					position: 'sticky',
 					top: '0',
 					zIndex: '100',
 					overflow: 'hidden',
-					opacity: stateScrolling ? '1' : '0'
 				}}
 			>
 				<div className={cl.wrapper}>
@@ -174,6 +139,15 @@ const Header = ({setIsOpenModalLanguage}) => {
 							<span>SAGE</span>
 							<span>coffee</span>
 						</a>
+					</div>
+					<div
+						className={cl.icon_language}
+						onClick={() => handleClickChangeLang()}
+					>
+						<FontAwesomeIcon
+							size='xl'
+							icon={faGlobe}
+						/>
 					</div>
 				</div>
 				{
@@ -189,6 +163,35 @@ const Header = ({setIsOpenModalLanguage}) => {
 					)
 				}
 			</header>
+			<div className={cl.tabs}>
+				{TABS.map(tab =>
+					<div
+						key={tab.key}
+						className={[
+							cl.tab,
+							selectedCatalog === tab.key && cl.tab_selected,
+						].join(' ')}
+						onClick={() => handleClickTab(tab)}
+					>{ LOCALES[language]?.departments[tab.key] }</div>
+				)}
+			</div>
+			<div className={cl.list_categories}>
+				{catalog.map((category, index) =>
+					<div
+						key={category.name_en}
+						className={[
+							cl.category,
+							selectedCategory === category.name_en && cl.category_selected,
+						].join(' ')}
+						onClick={() => handleClickCategory(category)}
+					>
+						<a href={'#' + category['name_' + language]} >
+							{ category['name_' + language] }
+						</a>
+						{ catalog.length - 1 !== index ? <span>&bull;</span> : null }
+					</div>
+				)}
+			</div>
 		</>
 	)
 }
