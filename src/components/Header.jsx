@@ -185,7 +185,7 @@ const Header = ({
 						].join(' ')}
 						onClick={() => handleClickCategory(category)}
 					>
-						<a href={'#' + category['name_' + language]} >
+						<a href={'#' + category.name_en} >
 							{ category['name_' + language] }
 						</a>
 						{ catalog.length - 1 !== index ? <span>&bull;</span> : null }
