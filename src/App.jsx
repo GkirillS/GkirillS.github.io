@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Menu from './components/Menu';
 import ModalLanguage from './components/ModalLanguage';
-import { API_BAR, API_KITCHEN } from './helpers/const';
+import { API_BAR, API_KITCHEN, API_SPECIAL } from './helpers/const';
 import axios from 'axios';
 
 const App = () => {
@@ -13,13 +13,16 @@ const App = () => {
   const [isOpenModalLanguage, setIsOpenModalLanguage] = useState(false);
   const [bar, setBar] = useState({})
 	const [kitchen, setKitchen] = useState({})
+	const [special, setSpecial] = useState({})
 	const [catalogBar, SetCatalogBar] = useState([])
 	const [catalogKitchen, SetCatalogKitchen] = useState([])
-	const [selectedCatalog, setSelectedCatalog] = useState('kitchen')
+	const [catalogSpecial, SetCatalogSpecial] = useState([])
+	const [selectedCatalog, setSelectedCatalog] = useState('special')
 	const [selectedCategory, setSelectedCategory] = useState(null)
 
 	const [isLoadingBar, setIsLoadingBar] = useState(false)
 	const [isLoadingKitchen, setIsLoadingKitchen] = useState(false)
+	const [isLoadingSpecial, setIsLoadingSpecial] = useState(false)
 
 	const getKitchen = async () => {
 		try {
@@ -34,6 +37,22 @@ const App = () => {
 			console.log(error)
 		} finally {
 			setIsLoadingBar(false)
+		}
+	}
+
+	const getSpecial = async () => {
+		try {
+			const resposneSpecial = await axios.get(API_SPECIAL)
+			localStorage.setItem('catalogSpecial', JSON.stringify(resposneSpecial.data.catalogs))
+			SetCatalogSpecial(resposneSpecial.data.catalogs)
+			setSelectedCategory(resposneSpecial.data.catalogs[0].name_en)
+			delete resposneSpecial.data.catalogs
+			localStorage.setItem('special', JSON.stringify(resposneSpecial.data))
+			setSpecial(resposneSpecial.data)
+		} catch (error) {
+			console.log(error)
+		} finally {
+			setIsLoadingSpecial(false)
 		}
 	}
 
@@ -53,6 +72,7 @@ const App = () => {
 		}
 	}
 	const getCategories = () => {
+		getSpecial()
 		getKitchen()
 		getBar()
 	}
@@ -63,12 +83,17 @@ const App = () => {
 			const catalogBar = JSON.parse(localStorage.getItem('catalogBar'))
 			const kitchen = JSON.parse(localStorage.getItem('kitchen'))
 			const catalogKitchen = JSON.parse(localStorage.getItem('catalogKitchen'))
+			const special = JSON.parse(localStorage.getItem('special'))
+			const catalogSpecial = JSON.parse(localStorage.getItem('catalogSpecial'))
 			setBar(bar ?? {})
 			setKitchen(kitchen ?? {})
+			setSpecial(special ?? {})
 			SetCatalogBar(catalogBar ?? [])
 			SetCatalogKitchen(catalogKitchen ?? [])
-			if (catalogKitchen) setSelectedCategory(catalogKitchen[0].name_en)
+			SetCatalogSpecial(catalogSpecial ?? [])
+			if (catalogSpecial) setSelectedCategory(catalogSpecial[0].name_en)
 			if (!catalogBar) setIsLoadingBar(true)
+			if (!catalogSpecial) setIsLoadingSpecial(true)
 			if (!catalogKitchen) setIsLoadingKitchen(true)
 		} catch (error) {
 			console.log(error)
@@ -105,6 +130,7 @@ const App = () => {
         catalogBar={catalogBar}
 				language={language}
 				catalogKitchen={catalogKitchen}
+				catalogSpecial={catalogSpecial}
 				setSelectedCatalog={setSelectedCatalog}
 				setSelectedCategory={setSelectedCategory}
 				selectedCatalog={selectedCatalog}
@@ -115,14 +141,15 @@ const App = () => {
           language={language}
           bar={bar}
           kitchen={kitchen}
+          special={special}
           catalogBar={catalogBar}
           catalogKitchen={catalogKitchen}
-									selectedCatalog={selectedCatalog}
-				selectedCategory={selectedCategory}
-          isLoadingBar={isLoadingBar}
-          isLoadingKitchen={isLoadingKitchen}
-				setSelectedCategory={setSelectedCategory}
-
+          catalogSpecial={catalogSpecial}
+					selectedCatalog={selectedCatalog}
+					selectedCategory={selectedCategory}
+					isLoadingBar={isLoadingBar}
+					isLoadingKitchen={isLoadingKitchen}
+					setSelectedCategory={setSelectedCategory}
         />
       </main>
       <Footer 

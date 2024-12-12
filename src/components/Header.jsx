@@ -10,6 +10,7 @@ const Header = ({
 	setIsOpenModalLanguage,
 	catalogBar,
 	catalogKitchen,
+	catalogSpecial,
 	language,
 	setSelectedCatalog,
 	setSelectedCategory,
@@ -100,13 +101,14 @@ const Header = ({
 	}
 
 	const TABS = [
+		{ name: 'special', key: 'special' },
 		{ name: 'kitchen', key: 'kitchen' },
 		{ name: 'bar', key: 'bar' },
 	]
 
 	const handleClickTab = (tab) => {
 		setSelectedCatalog(tab.key)
-		const catalog = tab.key === 'kitchen' ? catalogKitchen : catalogBar
+		const catalog = tab.key === 'kitchen' ? catalogKitchen : tab.key === 'special' ? catalogSpecial :  catalogBar
 		setSelectedCategory(catalog[0].name_en)
 	}
 
@@ -117,7 +119,8 @@ const Header = ({
 	const catalog = useMemo(() => {
 		if (selectedCatalog === 'kitchen') return catalogKitchen
 		if (selectedCatalog === 'bar') return catalogBar
-	}, [selectedCatalog, catalogKitchen, catalogBar])
+		if (selectedCatalog === 'special') return catalogSpecial
+	}, [selectedCatalog, catalogKitchen, catalogBar, catalogSpecial])
 
 	return (
 		<>

@@ -1,11 +1,8 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import cl from '../styles/Department.module.css'
 import Category from './Category'
 
-const Department = ({ name, selectedCategory, categories, products, language, setSelectedCategory }) => {
-	const category = useMemo(() => {
-		return categories.filter(item => item.name_en === selectedCategory)
-	}, [categories, selectedCategory])
+const Department = ({ selectedCategory, categories, products, language, setSelectedCategory }) => {
 	return (
 		<div className={cl.department}>
 				{

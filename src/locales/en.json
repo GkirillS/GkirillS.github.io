@@ -1,7 +1,8 @@
 {
 	"departments": {
 		"kitchen": "Kitchen",
-		"bar": "Bar"
+		"bar": "Bar",
+		"special": "Promo"
 	},
 	"footer": {
 		"timeWork": "Working hours:",

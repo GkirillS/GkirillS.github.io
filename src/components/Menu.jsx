@@ -14,16 +14,20 @@ const Categories = ({
 	isLoadingKitchen,
 	selectedCatalog,
 	selectedCategory,
-	setSelectedCategory
+	setSelectedCategory,
+	special,
+	catalogSpecial
 }) => {
 	const catalog = useMemo(() => {
 		if (selectedCatalog === 'kitchen') return catalogKitchen
 		if (selectedCatalog === 'bar') return catalogBar
-	}, [selectedCatalog, catalogKitchen, catalogBar])
+		if (selectedCatalog === 'special') return catalogSpecial
+	}, [selectedCatalog, catalogKitchen, catalogBar, catalogSpecial])
 	const products = useMemo(() => {
 		if (selectedCatalog === 'kitchen') return kitchen
 		if (selectedCatalog === 'bar') return bar
-	}, [bar, kitchen, selectedCatalog])
+		if (selectedCatalog === 'special') return special
+	}, [bar, kitchen, selectedCatalog, special])
 	return (
 		<section className={cl.menu}>
 			{!isLoadingKitchen ?

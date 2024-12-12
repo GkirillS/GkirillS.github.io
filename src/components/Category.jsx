@@ -3,6 +3,8 @@ import Product from './Product'
 import cl from '../styles/Category.module.css'
 
 const Category = ({ category, products, language, setSelectedCategory }) => {
+	useEffect(() => {
+	}, [category, products, language, setSelectedCategory ])
 	const callback = (entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {

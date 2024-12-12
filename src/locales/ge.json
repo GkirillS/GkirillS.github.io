@@ -1,7 +1,8 @@
 {
 	"departments": {
 		"kitchen": "სამზარეულო",
-		"bar": "ბარი"
+		"bar": "ბარი",
+		"special": "პრომო"
 	},
 	"footer": {
 		"timeWork": "ამუშაო საათები:",

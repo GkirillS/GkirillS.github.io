@@ -115,11 +115,17 @@
 	background-color: var(--beige);
 	color: var(--dark-brown);
 	gap: 50px;
+	overflow: auto;
+	overflow: -moz-scrollbars-none;
+	-ms-overflow-style: none; 
+	scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .tab {
 	cursor: pointer;
 	border-bottom: 3px solid transparent;
+	white-space: nowrap;
 	transition: all 0.3s ease-in-out;
 }
 
