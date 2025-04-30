@@ -13,6 +13,8 @@ git push
 cd build || exit 1
 
 git init
+git config user.name gorbachyovKS
+git config user.email gorbachyokvKS
 git remote add origin https://github.com/sage-coffee/sage-coffee.github.io.git 2>/dev/null || true
 git checkout -b gh-pages
 git add . && \
