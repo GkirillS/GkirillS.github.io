@@ -1,140 +1,151 @@
-import React, { useEffect, useState } from 'react'
-import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Menu from './components/Menu';
-import ModalLanguage from './components/ModalLanguage';
-import { API_BAR, API_KITCHEN, API_SPECIAL } from './helpers/const';
-import axios from 'axios';
+import React, { useEffect, useMemo, useState } from "react";
+import "./App.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Menu from "./components/Menu";
+import ModalLanguage from "./components/ModalLanguage";
+import { API_BAR, API_KITCHEN, API_SPECIAL } from "./helpers/const";
+import axios from "axios";
+import * as XLSX from "xlsx";
 
 const App = () => {
-  const [language, setLanguage] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isOpenModalLanguage, setIsOpenModalLanguage] = useState(false);
-  const [bar, setBar] = useState({})
-	const [kitchen, setKitchen] = useState({})
-	const [special, setSpecial] = useState({})
-	const [catalogBar, SetCatalogBar] = useState([])
-	const [catalogKitchen, SetCatalogKitchen] = useState([])
-	const [catalogSpecial, SetCatalogSpecial] = useState([])
-	const [selectedCatalog, setSelectedCatalog] = useState('special')
-	const [selectedCategory, setSelectedCategory] = useState(null)
+  const [kitchenWorkbook, setKitchenWorkbook] = useState(null);
+  const [barWorkbook, setBarWorkbook] = useState(null);
+  const [specialWorkbook, setSpeacialWorkbook] = useState(null);
+  const kitchenFilePath = process.env.PUBLIC_URL + "../kitchen.xlsx";
+  const specialFilePath = process.env.PUBLIC_URL + "../special.xlsx";
+  const barFilePath = process.env.PUBLIC_URL + "../bar.xlsx";
 
-	const [isLoadingBar, setIsLoadingBar] = useState(false)
-	const [isLoadingKitchen, setIsLoadingKitchen] = useState(false)
-	const [isLoadingSpecial, setIsLoadingSpecial] = useState(false)
-
-	const getKitchen = async () => {
-		try {
-			const resposneKitchen = await axios.get(API_KITCHEN)
-			localStorage.setItem('catalogKitchen', JSON.stringify(resposneKitchen.data.catalogs))
-			SetCatalogKitchen(resposneKitchen.data.catalogs)
-			setSelectedCategory(resposneKitchen.data.catalogs[0].name_en)
-			delete resposneKitchen.data.catalogs
-			localStorage.setItem('kitchen', JSON.stringify(resposneKitchen.data))
-			setKitchen(resposneKitchen.data)
-		} catch (error) {
-			console.log(error)
-		} finally {
-			setIsLoadingBar(false)
-		}
-	}
-
-	const getSpecial = async () => {
-		try {
-			const resposneSpecial = await axios.get(API_SPECIAL)
-			localStorage.setItem('catalogSpecial', JSON.stringify(resposneSpecial.data.catalogs))
-			SetCatalogSpecial(resposneSpecial.data.catalogs)
-			setSelectedCategory(resposneSpecial.data.catalogs[0].name_en)
-			delete resposneSpecial.data.catalogs
-			localStorage.setItem('special', JSON.stringify(resposneSpecial.data))
-			setSpecial(resposneSpecial.data)
-		} catch (error) {
-			console.log(error)
-		} finally {
-			setIsLoadingSpecial(false)
-		}
-	}
-
-	const getBar = async () => {
-		try {
-			const resposneBar = await axios.get(API_BAR)
-			localStorage.setItem('catalogBar', JSON.stringify(resposneBar.data.catalogs))
-			SetCatalogBar(resposneBar.data.catalogs)
-			delete resposneBar.data.catalogs
-			localStorage.setItem('bar', JSON.stringify(resposneBar.data))
-			setBar(resposneBar.data)
-			
-		} catch (error) {
-			console.log(error)
-		} finally {
-			setIsLoadingKitchen(false)
-		}
-	}
-	const getCategories = () => {
-		getSpecial()
-		getKitchen()
-		getBar()
-	}
-
-	const getCategoriesFromLocalStorage = () => {
-		try {
-			const bar = JSON.parse(localStorage.getItem('bar'))
-			const catalogBar = JSON.parse(localStorage.getItem('catalogBar'))
-			const kitchen = JSON.parse(localStorage.getItem('kitchen'))
-			const catalogKitchen = JSON.parse(localStorage.getItem('catalogKitchen'))
-			const special = JSON.parse(localStorage.getItem('special'))
-			const catalogSpecial = JSON.parse(localStorage.getItem('catalogSpecial'))
-			setBar(bar ?? {})
-			setKitchen(kitchen ?? {})
-			setSpecial(special ?? {})
-			SetCatalogBar(catalogBar ?? [])
-			SetCatalogKitchen(catalogKitchen ?? [])
-			SetCatalogSpecial(catalogSpecial ?? [])
-			if (catalogSpecial) setSelectedCategory(catalogSpecial[0].name_en)
-			if (!catalogBar) setIsLoadingBar(true)
-			if (!catalogSpecial) setIsLoadingSpecial(true)
-			if (!catalogKitchen) setIsLoadingKitchen(true)
-		} catch (error) {
-			console.log(error)
-		}
-	}
   useEffect(() => {
-    const local = JSON.parse(localStorage.getItem('language'))
-    if (local) setLanguage(local)
-    document.body.style.overflow = 'hidden'
-    setIsLoading(true)
-    getCategoriesFromLocalStorage()
-		getCategories()
-  }, [])
+    // Загружаем файл из public
+    fetch(kitchenFilePath)
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const workbook = XLSX.read(buffer, { type: "array" });
+        setKitchenWorkbook(parserWorkbook(workbook));
+      })
+      .catch((err) => console.error("Ошибка чтения Excel:", err));
+    fetch(barFilePath)
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const workbook = XLSX.read(buffer, { type: "array" });
+        setBarWorkbook(parserWorkbook(workbook));
+      })
+      .catch((err) => console.error("Ошибка чтения Excel:", err));
+    fetch(specialFilePath)
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const workbook = XLSX.read(buffer, { type: "array" });
+        setSpeacialWorkbook(parserWorkbook(workbook));
+      })
+      .catch((err) => console.error("Ошибка чтения Excel:", err));
+  }, []);
+
+  const [language, setLanguage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpenModalLanguage, setIsOpenModalLanguage] = useState(false);
+
+  const parser = (dataArr, firstRow) => {
+    let obj = {};
+    obj = dataArr.map((el) => {
+      let r = el.reduce((res, cur, index) => {
+        res[firstRow[index]] = cur;
+        return res;
+      }, {});
+      return r;
+    });
+
+    obj = obj.filter((item) => item.title_en !== "");
+
+    return obj;
+  };
+
+  const parserWorkbook = (wokrbook) => {
+    const sheetNames = wokrbook.SheetNames;
+    const result = {};
+    for (let i = 0; i < sheetNames.length; i++) {
+      const worksheet = wokrbook.Sheets[sheetNames[i]];
+      const list = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      const cleanedData = list.filter((row) => row.length);
+      let firstRow = cleanedData.shift();
+      result[sheetNames[i]] = parser(cleanedData, firstRow);
+    }
+    return result;
+  };
+
+  const bar = useMemo(() => {
+    const keys = Object.keys(barWorkbook ?? {});
+    return keys.reduce((acc, cur) => {
+      if (cur === "catalogs") return { ...acc };
+      return { ...acc, [cur]: barWorkbook[cur] };
+    }, {});
+  }, [barWorkbook]);
+  const kitchen = useMemo(() => {
+    const keys = Object.keys(kitchenWorkbook ?? {});
+    return keys.reduce((acc, cur) => {
+      if (cur === "catalogs") return { ...acc };
+      return { ...acc, [cur]: kitchenWorkbook[cur] };
+    }, {});
+  }, [kitchenWorkbook]);
+  const special = useMemo(() => {
+    const keys = Object.keys(specialWorkbook ?? {});
+    return keys.reduce((acc, cur) => {
+      if (cur === "catalogs") return { ...acc };
+      return { ...acc, [cur]: specialWorkbook[cur] };
+    }, {});
+  }, [specialWorkbook]);
+
+  const catalogBar = useMemo(() => {
+    return barWorkbook?.catalogs || [];
+  }, [barWorkbook]);
+  const catalogKitchen = useMemo(() => {
+    return kitchenWorkbook?.catalogs || [];
+  }, [kitchenWorkbook]);
+  const catalogSpecial = useMemo(() => {
+    return specialWorkbook?.catalogs || [];
+  }, [specialWorkbook]);
+
+  const [selectedCatalog, setSelectedCatalog] = useState("special");
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const [isLoadingBar, setIsLoadingBar] = useState(false);
+  const [isLoadingKitchen, setIsLoadingKitchen] = useState(false);
+  const [isLoadingSpecial, setIsLoadingSpecial] = useState(false);
+
+  useEffect(() => {
+    const local = JSON.parse(localStorage.getItem("language"));
+    if (local) setLanguage(local);
+    document.body.style.overflow = "hidden";
+    setIsLoading(true);
+  }, []);
 
   useEffect(() => {
     if (language) {
-      localStorage.setItem('language', JSON.stringify(language));
-      document.body.style.overflow = 'auto'
+      localStorage.setItem("language", JSON.stringify(language));
+      document.body.style.overflow = "auto";
     } else {
-      document.body.style.overflow = 'hidden'
-      setIsLoading(true)
+      document.body.style.overflow = "hidden";
+      setIsLoading(true);
     }
-    setIsOpenModalLanguage(false)
-  }, [language])
+    setIsOpenModalLanguage(false);
+  }, [language]);
 
-	useEffect(() => {
-	document.body.style.overflow = isOpenModalLanguage ? 'hidden' : 'auto'
-	}, [isOpenModalLanguage])
+  useEffect(() => {
+    document.body.style.overflow = isOpenModalLanguage ? "hidden" : "auto";
+  }, [isOpenModalLanguage]);
 
   return (
     <div>
       <Header
         setIsOpenModalLanguage={setIsOpenModalLanguage}
         catalogBar={catalogBar}
-				language={language}
-				catalogKitchen={catalogKitchen}
-				catalogSpecial={catalogSpecial}
-				setSelectedCatalog={setSelectedCatalog}
-				setSelectedCategory={setSelectedCategory}
-				selectedCatalog={selectedCatalog}
-				selectedCategory={selectedCategory}
+        language={language}
+        catalogKitchen={catalogKitchen}
+        catalogSpecial={catalogSpecial}
+        setSelectedCatalog={setSelectedCatalog}
+        setSelectedCategory={setSelectedCategory}
+        selectedCatalog={selectedCatalog}
+        selectedCategory={selectedCategory}
       />
       <main>
         <Menu
@@ -145,26 +156,24 @@ const App = () => {
           catalogBar={catalogBar}
           catalogKitchen={catalogKitchen}
           catalogSpecial={catalogSpecial}
-					selectedCatalog={selectedCatalog}
-					selectedCategory={selectedCategory}
-					isLoadingBar={isLoadingBar}
-					isLoadingKitchen={isLoadingKitchen}
-					setSelectedCategory={setSelectedCategory}
+          selectedCatalog={selectedCatalog}
+          selectedCategory={selectedCategory}
+          isLoadingBar={isLoadingBar}
+          isLoadingKitchen={isLoadingKitchen}
+          setSelectedCategory={setSelectedCategory}
         />
       </main>
-      <Footer 
+      <Footer
         language={language}
         setIsOpenModalLanguage={setIsOpenModalLanguage}
       />
-      {isLoading ?
-        language && !isOpenModalLanguage? null :
-          <ModalLanguage
-            language={language}
-            setLanguage={setLanguage}
-          />
-        : null}
+      {isLoading ? (
+        language && !isOpenModalLanguage ? null : (
+          <ModalLanguage language={language} setLanguage={setLanguage} />
+        )
+      ) : null}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

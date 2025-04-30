@@ -3,8 +3,8 @@ export const CAPACITY_EN_ML = "ml.";
 export const CURRENCY = "gel";
 export const LANGUAGE = "en";
 export const API_KITCHEN =
-  "https://script.googleusercontent.com/macros/echo?user_content_key=fuAygLaAQgM5IF-IJxPEfXFJURLaEAO2uHKr_Tiz0uFE0-AvjVMg48Qre3ZJrs8vtQ_WQghPHHeKcHcnS1Dq1Fc5JS8RuAiCm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnEngA94tGosX6kZoeljocz8mjzwRi7KlNhgf2FG-3DCDz9E5tG0essvagEQDrvLxSBdaJSWeNyeRjx064kq1BlzG7UlnB9Q8zgE&lib=Mipw8_CO-NkaYSUhu5o7Thm18-ynwPTZJ";
+  "https://script.google.com/macros/s/AKfycbwLBNzfqJInNXzY-JsqpsjOl1BIqSfu_Jnv6kQiDQtbsxfaCDSLte3t4yRxDScqX8H3/exec";
 export const API_BAR =
-  "https://script.googleusercontent.com/macros/echo?user_content_key=EFRc95IKg3eVM1V2Q3JCL7vBWrQyNh-78R6Xtub7dymRNIbvgN6dI6WVdRaO9PMyDnIfUaqZwmHW6B8Oea4unfqdj5k6Rsq2m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnDkaBbpxwZ8pBTTKD5GPDH474HUQlAUUIX4F-Qqf38-DZm1VDZy-xy_FgsbydUiWjADsHGBo-n_cH3hRLhd4xtYIz9ACSJ_g6dz9Jw9Md8uuAQ&lib=MQO-qZkaC1xlDV3ByJ77Bom18-ynwPTZJ";
+  "https://script.google.com/macros/s/AKfycbyZlTj99w8AlgmffrGvgV_V8_19xsyccaNPQl5-rKM3ahb_7Dc1Pu_jvlHbaOyF2QW5gQ/exec";
 export const API_SPECIAL =
-  "https://script.googleusercontent.com/macros/echo?user_content_key=pmCqU3U49Uk77prFXCJQbmrV77KGEth61geCdP8obR4_B5EMawElDI3mQEz55S3m2NnNBneaSg2KcHcnS1Dq1KdQunDGTXy3m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnDAiOTdD5ifF_vXGNKh5QTJNHMQkcwNpbgeqIuGQrtnhI0-bcQy4M_qgb4GwaSn0dc9uMg0WZXUemHAV5TK05fzDMWSJjWpfodz9Jw9Md8uuAQ&lib=MNH_N2qLN4fZt21Etp_Ywt218-ynwPTZJ";
+  "https://script.google.com/macros/s/AKfycbz9Be2ggfyIhntQfnD6GG89FPkDVt9ngm26qrj3di7B1IBLW1E-jyY2BvP2WvDre8ztJA/exec";
