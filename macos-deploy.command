@@ -13,8 +13,8 @@ git push
 cd build || exit 1
 
 git init
-git config user.name gorbachyovKS
-git config user.email gorbachyokvKS@gmail.com
+git config user.name sage-coffee
+git config user.email Lizagorbachyovs97@gmail.com
 git remote add origin https://github.com/sage-coffee/sage-coffee.github.io.git 2>/dev/null || true
 git checkout -b gh-pages
 git add . && \
