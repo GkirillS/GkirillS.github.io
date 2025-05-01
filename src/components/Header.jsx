@@ -43,7 +43,6 @@ const Header = ({
 	const setStateScroll = (data) => scrolling += data
 
 	useEffect(() => {
-		console.log(catalogBar, catalogKitchen)
 		setStateScroll(window.innerWidth)
 
 		try {

@@ -70,6 +70,13 @@ const App = () => {
       let firstRow = cleanedData.shift();
       result[sheetNames[i]] = parser(cleanedData, firstRow);
     }
+    Object.keys(result).map((key) => {
+      const fortmatted = result[key].filter(
+        ({ title_en, title_ru, title_ge, name_en, name_ru, name_ge }) =>
+          title_en || title_ru || title_ge || name_en || name_ru || name_ge
+      );
+      result[key] = fortmatted;
+    });
     return result;
   };
 
@@ -82,6 +89,12 @@ const App = () => {
   }, [barWorkbook]);
   const kitchen = useMemo(() => {
     const keys = Object.keys(kitchenWorkbook ?? {});
+    console.log(
+      keys.reduce((acc, cur) => {
+        if (cur === "catalogs") return { ...acc };
+        return { ...acc, [cur]: kitchenWorkbook[cur] };
+      }, {})
+    );
     return keys.reduce((acc, cur) => {
       if (cur === "catalogs") return { ...acc };
       return { ...acc, [cur]: kitchenWorkbook[cur] };
