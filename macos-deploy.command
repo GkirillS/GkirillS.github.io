@@ -10,6 +10,7 @@ if [ -f .env ]; then
 fi
 
 # 3. Основной деплой
+git pull origin main
 npm run build && \
 git add . && \
 git commit -m "-" && \
