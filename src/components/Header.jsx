@@ -127,7 +127,9 @@ const Header = ({
   const isMagnolia = useMemo(() => {
     return (
       window.location.pathname === "/magnolia" ||
-      window.location.pathname === "/magnolia/"
+      window.location.pathname === "/magnolia/" ||
+      window.location.hash === "/magnolia/" ||
+      window.location.hash === "/magnolia"
     );
   }, []);
 
