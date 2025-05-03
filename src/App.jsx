@@ -12,31 +12,58 @@ const App = () => {
   const [kitchenWorkbook, setKitchenWorkbook] = useState(null);
   const [barWorkbook, setBarWorkbook] = useState(null);
   const [specialWorkbook, setSpeacialWorkbook] = useState(null);
-  const kitchenFilePath = process.env.PUBLIC_URL + "../kitchen.xlsx";
-  const specialFilePath = process.env.PUBLIC_URL + "../special.xlsx";
-  const barFilePath = process.env.PUBLIC_URL + "../bar.xlsx";
+  const [magnoliaKitchenWorkbook, setMagnoliaKitchenWorkbook] = useState(null);
+  const [magnoliaBarWorkbook, setMagnoliaBarWorkbook] = useState(null);
+  const isMagnolia = useMemo(() => {
+    return (
+      window.location.pathname === "/magnolia" ||
+      window.location.pathname === "/magnolia/"
+    );
+  }, []);
+  const coffeeKitchenFilePath =
+    process.env.PUBLIC_URL + "../coffee/kitchen.xlsx";
+  const coffeeSpecialFilePath =
+    process.env.PUBLIC_URL + "../coffee/special.xlsx";
+  const coffeeBarFilePath = process.env.PUBLIC_URL + "../coffee/bar.xlsx";
+  const magnoliaBarFilePath = process.env.PUBLIC_URL + "../magnolia/bar.xlsx";
+  const magnoliaKitchenFilePath =
+    process.env.PUBLIC_URL + "../magnolia/kitchen.xlsx";
 
   useEffect(() => {
     // Загружаем файл из public
-    fetch(kitchenFilePath)
+    fetch(coffeeKitchenFilePath)
       .then((res) => res.arrayBuffer())
       .then((buffer) => {
         const workbook = XLSX.read(buffer, { type: "array" });
         setKitchenWorkbook(parserWorkbook(workbook));
       })
       .catch((err) => console.error("Ошибка чтения Excel:", err));
-    fetch(barFilePath)
+    fetch(coffeeBarFilePath)
       .then((res) => res.arrayBuffer())
       .then((buffer) => {
         const workbook = XLSX.read(buffer, { type: "array" });
         setBarWorkbook(parserWorkbook(workbook));
       })
       .catch((err) => console.error("Ошибка чтения Excel:", err));
-    fetch(specialFilePath)
+    fetch(coffeeSpecialFilePath)
       .then((res) => res.arrayBuffer())
       .then((buffer) => {
         const workbook = XLSX.read(buffer, { type: "array" });
         setSpeacialWorkbook(parserWorkbook(workbook));
+      })
+      .catch((err) => console.error("Ошибка чтения Excel:", err));
+    fetch(magnoliaBarFilePath)
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const workbook = XLSX.read(buffer, { type: "array" });
+        setMagnoliaBarWorkbook(parserWorkbook(workbook));
+      })
+      .catch((err) => console.error("Ошибка чтения Excel:", err));
+    fetch(magnoliaKitchenFilePath)
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const workbook = XLSX.read(buffer, { type: "array" });
+        setMagnoliaKitchenWorkbook(parserWorkbook(workbook));
       })
       .catch((err) => console.error("Ошибка чтения Excel:", err));
   }, []);
@@ -81,39 +108,44 @@ const App = () => {
   };
 
   const bar = useMemo(() => {
-    const keys = Object.keys(barWorkbook ?? {});
+    const workbook = isMagnolia ? magnoliaBarWorkbook : barWorkbook;
+    const keys = Object.keys(workbook ?? {});
     return keys.reduce((acc, cur) => {
       if (cur === "catalogs") return { ...acc };
-      return { ...acc, [cur]: barWorkbook[cur] };
+      return { ...acc, [cur]: workbook[cur] };
     }, {});
-  }, [barWorkbook]);
+  }, [barWorkbook, isMagnolia, magnoliaBarWorkbook]);
   const kitchen = useMemo(() => {
-    const keys = Object.keys(kitchenWorkbook ?? {});
+    const workbook = isMagnolia ? magnoliaKitchenWorkbook : kitchenWorkbook;
+    const keys = Object.keys(workbook ?? {});
     console.log(
       keys.reduce((acc, cur) => {
         if (cur === "catalogs") return { ...acc };
-        return { ...acc, [cur]: kitchenWorkbook[cur] };
+        return { ...acc, [cur.toLowerCase()]: workbook[cur] };
       }, {})
     );
     return keys.reduce((acc, cur) => {
       if (cur === "catalogs") return { ...acc };
-      return { ...acc, [cur]: kitchenWorkbook[cur] };
+      return { ...acc, [cur.toLowerCase()]: workbook[cur] };
     }, {});
-  }, [kitchenWorkbook]);
+  }, [kitchenWorkbook, isMagnolia, magnoliaKitchenWorkbook]);
   const special = useMemo(() => {
     const keys = Object.keys(specialWorkbook ?? {});
     return keys.reduce((acc, cur) => {
       if (cur === "catalogs") return { ...acc };
-      return { ...acc, [cur]: specialWorkbook[cur] };
+      return { ...acc, [cur.toLowerCase()]: specialWorkbook[cur] };
     }, {});
   }, [specialWorkbook]);
 
   const catalogBar = useMemo(() => {
+    if (isMagnolia) return magnoliaBarWorkbook?.catalogs || [];
     return barWorkbook?.catalogs || [];
-  }, [barWorkbook]);
+  }, [barWorkbook, magnoliaBarWorkbook, isMagnolia]);
   const catalogKitchen = useMemo(() => {
+    console.log(magnoliaKitchenWorkbook?.catalogs);
+    if (isMagnolia) return magnoliaKitchenWorkbook?.catalogs || [];
     return kitchenWorkbook?.catalogs || [];
-  }, [kitchenWorkbook]);
+  }, [kitchenWorkbook, magnoliaKitchenWorkbook, isMagnolia]);
   const catalogSpecial = useMemo(() => {
     return specialWorkbook?.catalogs || [];
   }, [specialWorkbook]);
@@ -123,9 +155,9 @@ const App = () => {
 
   const [isLoadingBar, setIsLoadingBar] = useState(false);
   const [isLoadingKitchen, setIsLoadingKitchen] = useState(false);
-  const [isLoadingSpecial, setIsLoadingSpecial] = useState(false);
 
   useEffect(() => {
+    if (isMagnolia) setSelectedCatalog("kitchen");
     const local = JSON.parse(localStorage.getItem("language"));
     if (local) setLanguage(local);
     document.body.style.overflow = "hidden";
@@ -150,9 +182,9 @@ const App = () => {
   return (
     <div>
       <Header
+        language={language}
         setIsOpenModalLanguage={setIsOpenModalLanguage}
         catalogBar={catalogBar}
-        language={language}
         catalogKitchen={catalogKitchen}
         catalogSpecial={catalogSpecial}
         setSelectedCatalog={setSelectedCatalog}
