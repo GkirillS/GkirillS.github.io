@@ -118,12 +118,6 @@ const App = () => {
   const kitchen = useMemo(() => {
     const workbook = isMagnolia ? magnoliaKitchenWorkbook : kitchenWorkbook;
     const keys = Object.keys(workbook ?? {});
-    console.log(
-      keys.reduce((acc, cur) => {
-        if (cur === "catalogs") return { ...acc };
-        return { ...acc, [cur.toLowerCase()]: workbook[cur] };
-      }, {})
-    );
     return keys.reduce((acc, cur) => {
       if (cur === "catalogs") return { ...acc };
       return { ...acc, [cur.toLowerCase()]: workbook[cur] };
@@ -142,7 +136,6 @@ const App = () => {
     return barWorkbook?.catalogs || [];
   }, [barWorkbook, magnoliaBarWorkbook, isMagnolia]);
   const catalogKitchen = useMemo(() => {
-    console.log(magnoliaKitchenWorkbook?.catalogs);
     if (isMagnolia) return magnoliaKitchenWorkbook?.catalogs || [];
     return kitchenWorkbook?.catalogs || [];
   }, [kitchenWorkbook, magnoliaKitchenWorkbook, isMagnolia]);

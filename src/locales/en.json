@@ -1,17 +1,18 @@
 {
-	"departments": {
-		"kitchen": "Kitchen",
-		"bar": "Bar",
-		"special": "Promo"
-	},
-	"footer": {
-		"timeWork": "Working hours:",
-		"everyday": "every day",
-		"bydni": "Sun - Thu 09:00-21:00",
-		"weekend": "Fri - Sat 09:00-23:00",
-		"address": "Address:",
-		"addresStreet": "Batumi, Khaidara Abashidze 13", 
-		"question": "For cooperation issues:",
-		"language": "Select language:"
-	}
+  "departments": {
+    "kitchen": "Kitchen",
+    "bar": "Bar",
+    "special": "Promo"
+  },
+  "footer": {
+    "timeWork": "Working hours:",
+    "everyday": "every day",
+    "bydni": "Every day 09:00-21:00",
+    "weekend": "Fri - Sat 09:00-23:00",
+    "address": "Address:",
+    "addresStreet": "Batumi, Khaidara Abashidze 13",
+    "addresStreetMagnolia": "Batumi, Sheriff Himshiashvili 4 , Magnolia",
+    "question": "For cooperation issues:",
+    "language": "Select language:"
+  }
 }
