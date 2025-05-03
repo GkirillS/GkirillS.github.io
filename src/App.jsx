@@ -18,8 +18,8 @@ const App = () => {
     return (
       window.location.pathname === "/magnolia" ||
       window.location.pathname === "/magnolia/" ||
-      window.location.hash === "/magnolia/" ||
-      window.location.hash === "/magnolia"
+      window.location.hash === "#/magnolia/" ||
+      window.location.hash === "#/magnolia"
     );
   }, []);
   const coffeeKitchenFilePath =
