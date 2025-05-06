@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { LOCALES } from "../locales";
+import { useLocation } from "react-router-dom";
 
 const Header = ({
   setIsOpenModalLanguage,
@@ -124,14 +125,12 @@ const Header = ({
     if (selectedCatalog === "special") return catalogSpecial;
   }, [selectedCatalog, catalogKitchen, catalogBar, catalogSpecial]);
 
+  const location = useLocation();
   const isMagnolia = useMemo(() => {
     return (
-      window.location.pathname === "/magnolia" ||
-      window.location.pathname === "/magnolia/" ||
-      window.location.hash === "#/magnolia/" ||
-      window.location.hash === "#/magnolia"
+      location.pathname === "/magnolia" || location.pathname === "/magnolia/"
     );
-  }, []);
+  }, [location]);
 
   return (
     <>

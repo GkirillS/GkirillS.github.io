@@ -7,6 +7,7 @@ import ModalLanguage from "./components/ModalLanguage";
 import { API_BAR, API_KITCHEN, API_SPECIAL } from "./helpers/const";
 import axios from "axios";
 import * as XLSX from "xlsx";
+import { useLocation } from "react-router-dom";
 
 const App = () => {
   const [kitchenWorkbook, setKitchenWorkbook] = useState(null);
@@ -14,14 +15,12 @@ const App = () => {
   const [specialWorkbook, setSpeacialWorkbook] = useState(null);
   const [magnoliaKitchenWorkbook, setMagnoliaKitchenWorkbook] = useState(null);
   const [magnoliaBarWorkbook, setMagnoliaBarWorkbook] = useState(null);
+  const location = useLocation();
   const isMagnolia = useMemo(() => {
     return (
-      window.location.pathname === "/magnolia" ||
-      window.location.pathname === "/magnolia/" ||
-      window.location.hash === "#/magnolia/" ||
-      window.location.hash === "#/magnolia"
+      location.pathname === "/magnolia" || location.pathname === "/magnolia/"
     );
-  }, []);
+  }, [location]);
   const coffeeKitchenFilePath =
     process.env.PUBLIC_URL + "../coffee/kitchen.xlsx";
   const coffeeSpecialFilePath =
