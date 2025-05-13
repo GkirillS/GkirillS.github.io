@@ -117,6 +117,10 @@ const Header = ({
 
   const handleClickCategory = (category) => {
     setSelectedCategory(category.name_en);
+    const element = document.getElementById(category.name_en);
+    if (element) {
+      element.scrollIntoView();
+    }
   };
 
   const catalog = useMemo(() => {
@@ -198,7 +202,7 @@ const Header = ({
             ].join(" ")}
             onClick={() => handleClickCategory(category)}
           >
-            <a href={"#" + category.name_en}>{category["name_" + language]}</a>
+            {category["name_" + language]}
             {catalog.length - 1 !== index ? <span>&bull;</span> : null}
           </div>
         ))}
