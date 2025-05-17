@@ -144,7 +144,7 @@ const App = () => {
     return specialWorkbook?.catalogs || [];
   }, [specialWorkbook]);
 
-  const [selectedCatalog, setSelectedCatalog] = useState(TABS[0]);
+  const [selectedCatalog, setSelectedCatalog] = useState(TABS[0].key);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const [isLoadingBar, setIsLoadingBar] = useState(false);
