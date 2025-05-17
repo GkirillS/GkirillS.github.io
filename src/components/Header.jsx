@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { LOCALES } from "../locales";
 import { useLocation } from "react-router-dom";
+import { TABS } from "../helpers/const";
 
 const Header = ({
   setIsOpenModalLanguage,
@@ -97,12 +98,6 @@ const Header = ({
       cornRef.current.push(el);
     }
   };
-
-  const TABS = [
-    // { name: "special", key: "special" },
-    { name: "kitchen", key: "kitchen" },
-    { name: "bar", key: "bar" },
-  ];
 
   const handleClickTab = (tab) => {
     setSelectedCatalog(tab.key);

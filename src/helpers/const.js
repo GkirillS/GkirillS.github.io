@@ -8,3 +8,8 @@ export const API_BAR =
   "https://script.google.com/macros/s/AKfycbyZlTj99w8AlgmffrGvgV_V8_19xsyccaNPQl5-rKM3ahb_7Dc1Pu_jvlHbaOyF2QW5gQ/exec";
 export const API_SPECIAL =
   "https://script.google.com/macros/s/AKfycbz9Be2ggfyIhntQfnD6GG89FPkDVt9ngm26qrj3di7B1IBLW1E-jyY2BvP2WvDre8ztJA/exec";
+export const TABS = [
+  // { name: "special", key: "special" },
+  { name: "kitchen", key: "kitchen" },
+  { name: "bar", key: "bar" },
+];

@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import ModalLanguage from "./components/ModalLanguage";
-import { API_BAR, API_KITCHEN, API_SPECIAL } from "./helpers/const";
+import { API_BAR, API_KITCHEN, API_SPECIAL, TABS } from "./helpers/const";
 import axios from "axios";
 import * as XLSX from "xlsx";
 import { useLocation } from "react-router-dom";
@@ -144,7 +144,7 @@ const App = () => {
     return specialWorkbook?.catalogs || [];
   }, [specialWorkbook]);
 
-  const [selectedCatalog, setSelectedCatalog] = useState("special");
+  const [selectedCatalog, setSelectedCatalog] = useState(TABS[0]);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const [isLoadingBar, setIsLoadingBar] = useState(false);
