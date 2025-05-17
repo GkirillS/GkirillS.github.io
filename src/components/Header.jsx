@@ -99,7 +99,7 @@ const Header = ({
   };
 
   const TABS = [
-    { name: "special", key: "special" },
+    // { name: "special", key: "special" },
     { name: "kitchen", key: "kitchen" },
     { name: "bar", key: "bar" },
   ];
