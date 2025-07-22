@@ -4,8 +4,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import ModalLanguage from "./components/ModalLanguage";
-import { API_BAR, API_KITCHEN, API_SPECIAL, TABS } from "./helpers/const";
-import axios from "axios";
+import { TABS } from "./helpers/const";
 import * as XLSX from "xlsx";
 import { useLocation } from "react-router-dom";
 
@@ -13,8 +12,11 @@ const App = () => {
   const [kitchenWorkbook, setKitchenWorkbook] = useState(null);
   const [barWorkbook, setBarWorkbook] = useState(null);
   const [specialWorkbook, setSpeacialWorkbook] = useState(null);
+
   const [magnoliaKitchenWorkbook, setMagnoliaKitchenWorkbook] = useState(null);
   const [magnoliaBarWorkbook, setMagnoliaBarWorkbook] = useState(null);
+  const [magnoliaSpecialWorkbook, setMagnoliaSpecialWorkbook] = useState(null);
+
   const location = useLocation();
   const isMagnolia = useMemo(() => {
     return (
@@ -26,9 +28,12 @@ const App = () => {
   const coffeeSpecialFilePath =
     process.env.PUBLIC_URL + "../coffee/special.xlsx";
   const coffeeBarFilePath = process.env.PUBLIC_URL + "../coffee/bar.xlsx";
+
   const magnoliaBarFilePath = process.env.PUBLIC_URL + "../magnolia/bar.xlsx";
   const magnoliaKitchenFilePath =
     process.env.PUBLIC_URL + "../magnolia/kitchen.xlsx";
+  const magnoliaSpecialFilePath =
+    process.env.PUBLIC_URL + "../magnolia/special.xlsx";
 
   useEffect(() => {
     // Загружаем файл из public
@@ -51,6 +56,13 @@ const App = () => {
       .then((buffer) => {
         const workbook = XLSX.read(buffer, { type: "array" });
         setSpeacialWorkbook(parserWorkbook(workbook));
+      })
+      .catch((err) => console.error("Ошибка чтения Excel:", err));
+    fetch(magnoliaSpecialFilePath)
+      .then((res) => res.arrayBuffer())
+      .then((buffer) => {
+        const workbook = XLSX.read(buffer, { type: "array" });
+        setMagnoliaSpecialWorkbook(parserWorkbook(workbook));
       })
       .catch((err) => console.error("Ошибка чтения Excel:", err));
     fetch(magnoliaBarFilePath)
@@ -116,6 +128,7 @@ const App = () => {
       return { ...acc, [cur]: workbook[cur] };
     }, {});
   }, [barWorkbook, isMagnolia, magnoliaBarWorkbook]);
+
   const kitchen = useMemo(() => {
     const workbook = isMagnolia ? magnoliaKitchenWorkbook : kitchenWorkbook;
     const keys = Object.keys(workbook ?? {});
@@ -124,13 +137,15 @@ const App = () => {
       return { ...acc, [cur.toLowerCase()]: workbook[cur] };
     }, {});
   }, [kitchenWorkbook, isMagnolia, magnoliaKitchenWorkbook]);
+
   const special = useMemo(() => {
-    const keys = Object.keys(specialWorkbook ?? {});
+    const workbook = isMagnolia ? magnoliaSpecialWorkbook : specialWorkbook;
+    const keys = Object.keys(workbook ?? {});
     return keys.reduce((acc, cur) => {
       if (cur === "catalogs") return { ...acc };
-      return { ...acc, [cur.toLowerCase()]: specialWorkbook[cur] };
+      return { ...acc, [cur.toLowerCase()]: workbook[cur] };
     }, {});
-  }, [specialWorkbook]);
+  }, [isMagnolia, magnoliaSpecialWorkbook, specialWorkbook]);
 
   const catalogBar = useMemo(() => {
     if (isMagnolia) return magnoliaBarWorkbook?.catalogs || [];
@@ -141,21 +156,43 @@ const App = () => {
     return kitchenWorkbook?.catalogs || [];
   }, [kitchenWorkbook, magnoliaKitchenWorkbook, isMagnolia]);
   const catalogSpecial = useMemo(() => {
+    if (isMagnolia) return magnoliaSpecialWorkbook?.catalogs || [];
     return specialWorkbook?.catalogs || [];
-  }, [specialWorkbook]);
+  }, [specialWorkbook, magnoliaSpecialWorkbook, isMagnolia]);
 
-  const [selectedCatalog, setSelectedCatalog] = useState(TABS[0].key);
+  const CATALOG_TAB_MAP = useMemo(
+    () => ({
+      kitchen: catalogKitchen,
+      special: catalogSpecial,
+      bar: catalogBar,
+    }),
+    [catalogBar, catalogKitchen, catalogSpecial]
+  );
+
+  const tabsFiltered = useMemo(() => {
+    return TABS.filter(({ key }) => CATALOG_TAB_MAP[key]?.length) || [];
+  }, [CATALOG_TAB_MAP]);
+
+  useEffect(() => {
+    const catalog = tabsFiltered[0]?.key;
+    console.log(magnoliaSpecialWorkbook);
+    if (catalog) setSelectedCatalog(catalog);
+  }, [tabsFiltered]);
+
+  const [selectedCatalog, setSelectedCatalog] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const [isLoadingBar, setIsLoadingBar] = useState(false);
   const [isLoadingKitchen, setIsLoadingKitchen] = useState(false);
 
   useEffect(() => {
-    if (isMagnolia) setSelectedCatalog("kitchen");
     const local = JSON.parse(localStorage.getItem("language"));
     if (local) setLanguage(local);
     document.body.style.overflow = "hidden";
     setIsLoading(true);
+
+    const catalog = tabsFiltered[0]?.key;
+    if (catalog) setSelectedCatalog(catalog);
   }, []);
 
   useEffect(() => {

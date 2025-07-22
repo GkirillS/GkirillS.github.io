@@ -28,8 +28,14 @@ const Footer = ({ language, setIsOpenModalLanguage }) => {
 
   const map = useMemo(() => {
     return isMagnolia
-      ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.5138587186543!2d41.62766497667447!3d41.64463837126842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4067875dcab8548b%3A0x7513e639e92c0ed7!2sSAGE%20coffee!5e0!3m2!1sru!2sby!4v1718695702769!5m2!1sru!2sby"
+      ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.531617040489!2d41.616653299999996!3d41.644254600000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406787aaa4944dfb%3A0x51a2a8cb4dfe6b01!2sSage%20coffee%20Magnolia!5e0!3m2!1sru!2sfr!4v1753224795536!5m2!1sru!2sfr"
       : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.5138587186543!2d41.62766497667447!3d41.64463837126842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4067875dcab8548b%3A0x7513e639e92c0ed7!2sSAGE%20coffee!5e0!3m2!1sru!2sby!4v1718695702769!5m2!1sru!2sby";
+  }, [isMagnolia]);
+
+  const instagram = useMemo(() => {
+    return isMagnolia
+      ? "https://www.instagram.com/sagemagnolia.ge?igsh=MXcxcno2bzk5NWlzbQ=="
+      : "https://www.instagram.com/sagecoffee.ge?igsh=bnl2aG9hNTBzdXR5&utm_source=qr";
   }, [isMagnolia]);
   return (
     <div className={cl.footer}>
@@ -37,11 +43,7 @@ const Footer = ({ language, setIsOpenModalLanguage }) => {
         <div className={cl.body_left}>
           <ul className={cl.links}>
             <li className={cl.link}>
-              <a
-                rel="noreferrer"
-                href="https://www.instagram.com/sagecoffee.ge?igsh=bnl2aG9hNTBzdXR5&utm_source=qr"
-                target="_blank"
-              >
+              <a rel="noreferrer" href={instagram} target="_blank">
                 <FontAwesomeIcon size="xl" icon={faInstagram} />
               </a>
             </li>

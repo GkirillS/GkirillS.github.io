@@ -101,14 +101,18 @@ const Header = ({
 
   const handleClickTab = (tab) => {
     setSelectedCatalog(tab.key);
-    const catalog =
-      tab.key === "kitchen"
-        ? catalogKitchen
-        : tab.key === "special"
-        ? catalogSpecial
-        : catalogBar;
+    const catalog = CATALOG_TAB_MAP[tab.key];
     setSelectedCategory(catalog[0].name_en);
   };
+
+  const CATALOG_TAB_MAP = useMemo(
+    () => ({
+      kitchen: catalogKitchen,
+      special: catalogSpecial,
+      bar: catalogBar,
+    }),
+    [catalogBar, catalogKitchen, catalogSpecial]
+  );
 
   const handleClickCategory = (category) => {
     setSelectedCategory(category.name_en);
@@ -119,10 +123,12 @@ const Header = ({
   };
 
   const catalog = useMemo(() => {
-    if (selectedCatalog === "kitchen") return catalogKitchen;
-    if (selectedCatalog === "bar") return catalogBar;
-    if (selectedCatalog === "special") return catalogSpecial;
-  }, [selectedCatalog, catalogKitchen, catalogBar, catalogSpecial]);
+    return CATALOG_TAB_MAP[selectedCatalog] || [];
+  }, [CATALOG_TAB_MAP, selectedCatalog]);
+
+  const tabsFiltered = useMemo(() => {
+    return TABS.filter(({ key }) => CATALOG_TAB_MAP[key]?.length);
+  }, [CATALOG_TAB_MAP]);
 
   const location = useLocation();
   const isMagnolia = useMemo(() => {
@@ -172,20 +178,18 @@ const Header = ({
         ))}
       </header>
       <div className={cl.tabs}>
-        {TABS.filter(({ key }) => (isMagnolia ? key !== "special" : true)).map(
-          (tab) => (
-            <div
-              key={tab.key}
-              className={[
-                cl.tab,
-                selectedCatalog === tab.key && cl.tab_selected,
-              ].join(" ")}
-              onClick={() => handleClickTab(tab)}
-            >
-              {LOCALES[language]?.departments[tab.key]}
-            </div>
-          )
-        )}
+        {tabsFiltered.map((tab) => (
+          <div
+            key={tab.key}
+            className={[
+              cl.tab,
+              selectedCatalog === tab.key && cl.tab_selected,
+            ].join(" ")}
+            onClick={() => handleClickTab(tab)}
+          >
+            {LOCALES[language]?.departments[tab.key]}
+          </div>
+        ))}
       </div>
       <div className={cl.list_categories}>
         {catalog.map((category, index) => (

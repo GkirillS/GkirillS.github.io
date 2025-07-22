@@ -22,11 +22,13 @@ const Categories = ({
     if (selectedCatalog === "kitchen") return catalogKitchen;
     if (selectedCatalog === "bar") return catalogBar;
     if (selectedCatalog === "special") return catalogSpecial;
+    return [];
   }, [selectedCatalog, catalogKitchen, catalogBar, catalogSpecial]);
   const products = useMemo(() => {
     if (selectedCatalog === "kitchen") return kitchen;
     if (selectedCatalog === "bar") return bar;
     if (selectedCatalog === "special") return special;
+    return {};
   }, [bar, kitchen, selectedCatalog, special]);
   return (
     <section className={cl.menu}>
