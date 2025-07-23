@@ -30,7 +30,7 @@ const Category = ({ category, products, language, setSelectedCategory }) => {
     <div className={cl.category} ref={categoryRef}>
       <a className={cl.anchor} id={category.name_en}></a>
       <div id={category.name_en} className={[cl.container].join(" ")}>
-        {products[category.name_en.toLowerCase()]?.map((product) => (
+        {products[category.name_en?.toLowerCase()]?.map((product) => (
           <Product language={language} product={product} />
         ))}
       </div>

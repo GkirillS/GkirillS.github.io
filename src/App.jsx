@@ -124,7 +124,7 @@ const App = () => {
     const workbook = isMagnolia ? magnoliaBarWorkbook : barWorkbook;
     const keys = Object.keys(workbook ?? {});
     return keys.reduce((acc, cur) => {
-      if (cur === "catalogs") return { ...acc };
+      if (cur === "catalogs" || !cur) return { ...acc };
       return { ...acc, [cur]: workbook[cur] };
     }, {});
   }, [barWorkbook, isMagnolia, magnoliaBarWorkbook]);
@@ -133,7 +133,7 @@ const App = () => {
     const workbook = isMagnolia ? magnoliaKitchenWorkbook : kitchenWorkbook;
     const keys = Object.keys(workbook ?? {});
     return keys.reduce((acc, cur) => {
-      if (cur === "catalogs") return { ...acc };
+      if (cur === "catalogs" || !cur) return { ...acc };
       return { ...acc, [cur.toLowerCase()]: workbook[cur] };
     }, {});
   }, [kitchenWorkbook, isMagnolia, magnoliaKitchenWorkbook]);
@@ -142,7 +142,7 @@ const App = () => {
     const workbook = isMagnolia ? magnoliaSpecialWorkbook : specialWorkbook;
     const keys = Object.keys(workbook ?? {});
     return keys.reduce((acc, cur) => {
-      if (cur === "catalogs") return { ...acc };
+      if (cur === "catalogs" || !cur) return { ...acc };
       return { ...acc, [cur.toLowerCase()]: workbook[cur] };
     }, {});
   }, [isMagnolia, magnoliaSpecialWorkbook, specialWorkbook]);
